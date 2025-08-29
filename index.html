@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajude o Bilau a Crescer!</title>
+    <meta name="description" content="Ajude o Bilau a crescer! Cada R$ 1,00 = 1 cm de crescimento. Doe e veja seu nome no hall da fama!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Ajude o Bilau a Crescer!">
+    <meta property="og:description" content="Cada R$ 1,00 = 1 cm de crescimento. Doe e veja seu nome no hall da fama!">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Carregando o Bilau...</p>
+    </div>
+
+    <!-- Background Cards -->
+    <div id="cards-background" class="cards-background">
+        <!-- Cards serão inseridos dinamicamente aqui -->
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Botão Principal -->
+            <button id="donate-btn" class="main-button">
+                Ajude o Bilau a crescer!
+            </button>
+
+            <!-- Bilau GIF Container -->
+            <div class="bilau-container">
+                <div class="bilau-wrapper">
+                    <img id="bilau-gif" src="./assets/images/bilau-default.gif" alt="Bilau" class="bilau-gif">
+                </div>
+            </div>
+
+            <!-- Current Size Display -->
+            <div class="current-size">
+                <div class="size-display">
+                    <span class="size-label">Tamanho Atual do Bilau:</span>
+                    <span id="current-size" class="size-value">1652 cm</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar com Metas -->
+        <aside class="sidebar">
+            <h3>Visuais Liberados</h3>
+            <div class="goals-container">
+                <div class="goal-item unlocked active" data-visual="default">
+                    <div class="goal-preview">
+                        <img src="./assets/images/bilau-default.gif" alt="Bilau Padrão">
+                    </div>
+                    <div class="goal-info">
+                        <h4>Bilau</h4>
+                        <span class="goal-size">0 cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item unlocked" data-visual="aquatico">
+                    <div class="goal-preview">
+                        <img src="./assets/images/bilau-aquatico.gif" alt="Bilau Aquático">
+                    </div>
+                    <div class="goal-info">
+                        <h4>Bilau Aquático</h4>
+                        <span class="goal-size">500 cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item unlocked" data-visual="cowboy">
+                    <div class="goal-preview">
+                        <img src="./assets/images/bilau-cowboy.gif" alt="Bilau Cowboy">
+                    </div>
+                    <div class="goal-info">
+                        <h4>Bilau Cowboy</h4>
+                        <span class="goal-size">1000 cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item unlocked" data-visual="ballz">
+                    <div class="goal-preview">
+                        <img src="./assets/images/bilau-ballz.gif" alt="Bilau Ball Z">
+                    </div>
+                    <div class="goal-info">
+                        <h4>Bilau Ball Z</h4>
+                        <span class="goal-size">1500 cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item locked" data-visual="saiyajin">
+                    <div class="goal-preview">
+                        <img src="./assets/images/bilau-saiyajin.gif" alt="Bilau Super Saiyajin">
+                    </div>
+                    <div class="goal-info">
+                        <h4>Bilau Super Saiyajin</h4>
+                        <span class="goal-size">2000 cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item locked" data-visual="unknown1">
+                    <div class="goal-preview">
+                        <div class="unknown-preview">?</div>
+                    </div>
+                    <div class="goal-info">
+                        <h4>????</h4>
+                        <span class="goal-size">???? cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item locked" data-visual="unknown2">
+                    <div class="goal-preview">
+                        <div class="unknown-preview">?</div>
+                    </div>
+                    <div class="goal-info">
+                        <h4>????</h4>
+                        <span class="goal-size">???? cm</span>
+                    </div>
+                </div>
+
+                <div class="goal-item locked" data-visual="unknown3">
+                    <div class="goal-preview">
+                        <div class="unknown-preview">?</div>
+                    </div>
+                    <div class="goal-info">
+                        <h4>????</h4>
+                        <span class="goal-size">???? cm</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal de Doação -->
+    <div id="donation-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajudar a crescer!</h2>
+                <button class="close-btn" data-modal="donation-modal">&times;</button>
+            </div>
+            
+            <form id="donation-form" class="donation-form">
+                <div class="form-group">
+                    <label for="donor-name">Nome desejado:</label>
+                    <input type="text" id="donor-name" name="name" required maxlength="50" 
+                           placeholder="Este nome aparecerá no seu card">
+                </div>
+
+                <div class="form-group">
+                    <label for="donation-amount">Com quanto você quer ajudar o bilau a crescer?</label>
+                    <div class="amount-input">
+                        <span class="currency">R$</span>
+                        <input type="number" id="donation-amount" name="amount" 
+                               min="1" step="0.01" required placeholder="0,00">
+                    </div>
+                    <small class="form-note">R$ 1,00 = 1 cm</small>
+                    <small class="form-note premium">*Acima de R$ 200 você terá direito a um card customizado exclusivo</small>
+                </div>
+
+                <!-- Campos extras para doações premium -->
+                <div id="premium-fields" class="premium-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="custom-design">Descreva como você quer seu card customizado:</label>
+                        <textarea id="custom-design" name="customDesign" rows="4" maxlength="200"
+                                placeholder="Descreva cores, texto, estilo..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donor-email">E-mail:</label>
+                        <input type="email" id="donor-email" name="email" 
+                               placeholder="Você receberá uma versão do seu card customizado">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Seguir ao pagamento</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Pagamento -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Pagamento Confirmado!</h2>
+                <button class="close-btn" data-modal="payment-modal">&times;</button>
+            </div>
+            
+            <div class="payment-content">
+                <div class="success-icon">✅</div>
+                
+                <div class="payment-info">
+                    <p>Em até 30 minutos seu card aparecerá no site. Em caso de card customizado, em até 2 dias o design será feito e enviado para o seu e-mail.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de QR Code -->
+    <div id="qr-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Finalizar Contribuição</h2>
+                <button class="close-btn" data-modal="qr-modal">&times;</button>
+            </div>
+            
+            <div class="qr-content">
+                <div id="qr-code" class="qr-code-container">
+                    <!-- QR Code será inserido aqui -->
+                </div>
+                
+                <div class="pix-info">
+                    <p><strong>Código copia e cola:</strong></p>
+                    <div class="pix-code">
+                        <input type="text" id="pix-code-input" readonly>
+                        <button id="copy-pix" class="copy-btn">Copiar</button>
+                    </div>
+                </div>
+
+                <button id="payment-problems" class="problems-btn">Problemas para visualizar?</button>
+                
+                <div class="payment-value">
+                    <strong>Valor: R$ <span id="payment-amount">0,00</span></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="./js/api.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/payment.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

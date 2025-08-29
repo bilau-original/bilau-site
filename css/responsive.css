@@ -1,0 +1,487 @@
+/* Mobile First - Base styles for mobile devices */
+
+/* Large Mobile Devices (576px and up) */
+@media (min-width: 576px) {
+    .header h1 {
+        font-size: 3.5em;
+    }
+    
+    .main-button {
+        font-size: 1.6em;
+        padding: 25px 50px;
+    }
+    
+    .bilau-gif {
+        max-width: 350px;
+        max-height: 350px;
+    }
+}
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) {
+    .main-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 40px;
+    }
+    
+    .header {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 0;
+    }
+    
+    .main-content {
+        flex: 1;
+        max-width: 600px;
+        margin-top: 120px;
+    }
+    
+    .sidebar {
+        position: static;
+        transform: none;
+        margin-left: 40px;
+        max-width: 250px;
+        margin-top: 120px;
+    }
+    
+    .cards-background {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .donor-card {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}
+
+/* Small Desktops (992px and up) */
+@media (min-width: 992px) {
+    .header h1 {
+        font-size: 4em;
+    }
+    
+    .main-button {
+        font-size: 1.4em;
+        padding: 30px 60px;
+    }
+    
+    .bilau-gif {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    
+    .sidebar {
+        max-width: 300px;
+    }
+    
+    .cards-background {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        padding: 25px;
+    }
+    
+    .donor-card {
+        padding: 18px;
+        font-size: 1em;
+    }
+    
+    .modal-content {
+        max-width: 600px;
+    }
+}
+
+/* Large Desktops (1200px and up) */
+@media (min-width: 1200px) {
+    .main-container {
+        padding: 60px;
+    }
+    
+    .header h1 {
+        font-size: 4.5em;
+    }
+    
+    .main-button {
+        font-size: 1.6em;
+        padding: 35px 70px;
+    }
+    
+    .bilau-gif {
+        max-width: 450px;
+        max-height: 450px;
+    }
+    
+    .sidebar {
+        max-width: 350px;
+    }
+    
+    .cards-background {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 30px;
+    }
+}
+
+/* Mobile Specific Styles */
+@media (max-width: 767px) {
+    body {
+        padding: 0;
+    }
+    
+    .main-container {
+        padding: 15px;
+        gap: 20px;
+    }
+    
+    .header h1 {
+        font-size: 2.2em;
+        margin-bottom: 5px;
+    }
+    
+    .subtitle {
+        font-size: 1em;
+    }
+    
+    .main-button {
+        font-size: 1.2em;
+        padding: 15px 30px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .bilau-gif {
+        max-width: 250px;
+        max-height: 250px;
+    }
+    
+    .current-size {
+        padding: 15px;
+        margin: 0 10px;
+    }
+    
+    .size-value {
+        font-size: 2em;
+    }
+    
+    /* Sidebar mobile adjustments */
+    .sidebar {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        margin: 20px 0;
+        border-radius: 15px;
+    }
+    
+    .goals-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    .goal-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .goal-preview {
+        margin-right: 0;
+        margin-bottom: 8px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .goal-info h4 {
+        font-size: 0.9em;
+        margin-bottom: 2px;
+    }
+    
+    .goal-size {
+        font-size: 0.8em;
+    }
+    
+    /* Cards background mobile */
+    .cards-background {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .donor-card {
+        padding: 8px;
+        font-size: 0.8em;
+        border-radius: 10px;
+    }
+    
+    .donor-card .donor-name {
+        font-size: 1em;
+        margin-bottom: 3px;
+    }
+    
+    .donor-card .donation-text {
+        font-size: 0.8em;
+    }
+    
+    /* Modal mobile adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        border-radius: 15px;
+    }
+    
+    .modal-header {
+        padding: 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.3em;
+    }
+    
+    .donation-form {
+        padding: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .premium-fields {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .payment-content,
+    .qr-content {
+        padding: 20px;
+    }
+    
+    .success-icon {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+    
+    .pix-code {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .copy-btn {
+        width: 100%;
+    }
+    
+    /* Toast mobile */
+    .toast-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .toast {
+        max-width: none;
+        margin-bottom: 8px;
+    }
+}
+
+/* Ultra small devices (max-width: 575px) */
+@media (max-width: 575px) {
+    .header h1 {
+        font-size: 1.8em;
+        line-height: 1.2;
+    }
+    
+    .main-button {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+    
+    .bilau-gif {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    
+    .size-value {
+        font-size: 1.5em;
+    }
+    
+    .goals-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .goal-preview {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .cards-background {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    .donor-card {
+        padding: 6px;
+        font-size: 0.7em;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 767px) and (orientation: landscape) {
+    .main-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+    }
+    
+    .header {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .header h1 {
+        font-size: 1.5em;
+        margin-bottom: 0;
+    }
+    
+    .subtitle {
+        font-size: 0.9em;
+    }
+    
+    .main-content {
+        margin-top: 60px;
+        gap: 15px;
+    }
+    
+    .bilau-gif {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    
+    .main-button {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+    
+    .sidebar {
+        margin-top: 60px;
+        padding: 10px;
+        max-width: 200px;
+    }
+    
+    .goal-item {
+        padding: 8px;
+    }
+    
+    .goal-preview {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bilau-gif {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .cards-background,
+    .sidebar,
+    .modal,
+    .toast-container {
+        display: none !important;
+    }
+    
+    .main-container {
+        padding: 20px;
+    }
+    
+    .bilau-gif {
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .loading-spinner {
+        animation: none;
+    }
+    
+    .donor-card {
+        animation: none;
+        transform: none !important;
+    }
+    
+    .bilau-wrapper {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .modal-content {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        background: #34495e;
+        border-color: #4a5568;
+        color: white;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #667eea;
+        background: #2c3e50;
+    }
+    
+    .form-group label {
+        color: #e2e8f0;
+    }
+    
+    .form-note {
+        color: #a0aec0;
+    }
+    
+    .qr-code-container {
+        background: #2c3e50;
+        border-color: #4a5568;
+    }
+    
+    .pix-code input {
+        background: #34495e;
+        border-color: #4a5568;
+        color: white;
+    }
+    
+    .payment-value {
+        background: rgba(102, 126, 234, 0.2);
+        color: #e2e8f0;
+    }
+}
