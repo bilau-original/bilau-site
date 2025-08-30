@@ -16,13 +16,6 @@ const AppState = {
     }
 };
 
-// Configurações da API
-const API_CONFIG = {
-    BASE_URL: 'https://bilau-backend.onrender.com/api',
-    // Para desenvolvimento local, descomente a linha abaixo:
-    // BASE_URL: 'http://localhost:3000/api'
-};
-
 // Utilitários
 const Utils = {
     // Formatar moeda brasileira
