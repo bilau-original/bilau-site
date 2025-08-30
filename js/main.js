@@ -1,5 +1,3 @@
-<script src="api.js"></script>
-
 // Estado global da aplicação
 const AppState = {
     currentSize: 1652,
