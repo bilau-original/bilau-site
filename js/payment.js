@@ -39,7 +39,7 @@ const Payment = {
             this.addPendingPayment(donationId);
 
             // Iniciar verificação de status
-            this.startPaymentCheck(pixId);
+            this.startPaymentCheck(donationId);
 
             // Auto-timeout após 30 minutos
             setTimeout(() => {
@@ -139,7 +139,7 @@ const Payment = {
     },
 
     // Iniciar verificação de status do pagamento
-    startPaymentCheck(pixId) {
+    startPaymentCheck(donationId) {
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
         }
@@ -148,7 +148,7 @@ const Payment = {
         
         this.checkInterval = setInterval(async () => {
             try {
-                const status = await API.checkPaymentStatus(pixId);
+                const status = await API.checkPaymentStatus(donationId);
                 
                 if (status.confirmed) {
                     this.handlePaymentSuccess(status);
