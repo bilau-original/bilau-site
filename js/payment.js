@@ -20,11 +20,12 @@ const Payment = {
     },
 
     // Mostrar QR Code do PIX
-    async showQRCode(pixData, amount, donationId) {
+    async showQRCode(pixData, amount, donationId, pixId) {
         try {
             this.currentPayment = {
                 pixCode: pixData,
                 amount: amount,
+                pixId: pixId,
                 donationId: donationId,
                 timestamp: Date.now()
             };
