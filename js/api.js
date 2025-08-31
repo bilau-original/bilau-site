@@ -368,6 +368,7 @@ const API = {
 document.addEventListener('DOMContentLoaded', async () => {
     // Verificar se API está online
     const isOnline = await API.healthCheck();
+    console.log(isOnline)
     
     if (!isOnline) {
         console.warn('API offline - usando dados mockados');
