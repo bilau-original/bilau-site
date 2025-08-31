@@ -39,7 +39,7 @@ const Payment = {
             this.addPendingPayment(donationId);
 
             // Iniciar verificação de status
-            this.startPaymentCheck(donationId);
+            this.startPaymentCheck(pixId);
 
             // Auto-timeout após 30 minutos
             setTimeout(() => {
@@ -139,7 +139,7 @@ const Payment = {
     },
 
     // Iniciar verificação de status do pagamento
-    startPaymentCheck(donationId) {
+    startPaymentCheck(pixId) {
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
         }
@@ -148,7 +148,7 @@ const Payment = {
         
         this.checkInterval = setInterval(async () => {
             try {
-                const status = await API.checkPaymentStatus(donationId);
+                const status = await API.checkPaymentStatus(pixId);
                 
                 if (status.confirmed) {
                     this.handlePaymentSuccess(status);
@@ -184,7 +184,7 @@ const Payment = {
         this.stopPaymentCheck();
         
         if (this.currentPayment) {
-            this.removePendingPayment(this.currentPayment.donationId);
+            this.removePendingPayment(this.currentPayment.pixId);
         }
 
         // Fechar modal de QR

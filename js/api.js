@@ -167,13 +167,15 @@ const API = {
             const response = await this.post('/donations', data);
             
             return {
-                donationId: response.donationId || response.id,
-                pixCode: response.pixCode,
-                amount: response.amount,
-                qrCodeUrl: response.qrCodeUrl,
+                donationId: response.donationId || response.id || response._id,  // Adicione response._id
+                pixId: response.pixId || response.paymentId,  // Adicione para pixId
+                externalReference: response.externalReference,
+                pixCode: response.pixCode || response.qrCode,  // Aliases comuns
+                qrCodeBase64: response.qrCodeBase64,
+                qrCodeUrl: response.qrCodeUrl || response.ticket_url,  // Use ticket_url se for o link
                 expiresAt: response.expiresAt,
                 ...response
-            };
+              };
 
         } catch (error) {
             console.error('Erro ao criar doação:', error);
@@ -196,7 +198,7 @@ const API = {
     // Verificar status do pagamento
     async checkPaymentStatus(donationId) {
         try {
-            const response = await this.get(`/payments/status/${donationId}`);
+            const response = await this.get(`/payments/status/pix/${pixId}`);  // Ajuste endpoint
             
             return {
                 confirmed: response.confirmed || response.status === 'confirmed',
