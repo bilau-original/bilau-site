@@ -286,6 +286,8 @@ const Modal = {
         
         // Gerar QR Code usando qrCodeBase64
         this.generateQRCode(qrData.qrCodeBase64, qrData.pixId); // Passe pixId para iniciar polling
+
+        console.log(qrData)
     },
 
     generateQRCode(qrCodeBase64, pixId) {
