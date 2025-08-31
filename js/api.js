@@ -174,6 +174,7 @@ const API = {
                 qrCodeBase64: response.payment.qrCodeBase64,
                 qrCodeUrl: response.payment.ticketUrl,
                 expiresAt: response.payment.expiresAt,
+                amount: response.payment.transaction_amount || data.amount, // Fallback para amount
                 ...response
             };
         } catch (error) {

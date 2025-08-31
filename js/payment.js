@@ -34,7 +34,8 @@ const Payment = {
             Modal.showQRModal({
                 pixCode: pixData,
                 amount: amount,
-                pixId: pixId
+                pixId: pixId,
+                qrCodeBase64: this.currentPayment.qrCodeBase64 || '' // Adicionar se disponível
             });
 
             // Adicionar à lista de pagamentos pendentes
