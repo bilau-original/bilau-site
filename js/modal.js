@@ -138,16 +138,49 @@ const Modal = {
         return true;
     },
 
+    async startPaymentCheck(pixId) {
+        const checkStatus = async () => {
+            try {
+                const status = await API.checkPaymentStatus(pixId); // Assuma que API está definida globalmente
+                if (status === 'confirmed') {
+                    this.hide('qr-modal');
+                    // Chamar showPaymentConfirmed com dados da doação (precisa de integração com API)
+                    const donation = await API.getDonationByPixId(pixId); // Adicione essa função em api.js
+                    this.showPaymentConfirmed({
+                        amount: donation.amount,
+                        centimeters: donation.centimeters,
+                        email: donation.email,
+                        isCustom: donation.cardType === 'custom'
+                    });
+                } else if (status === 'expired') {
+                    this.hide('qr-modal');
+                    Toast.show('Pagamento expirado. Tente novamente.', 'error', 5000);
+                }
+            } catch (error) {
+                console.error('Erro ao verificar status:', error);
+            }
+        };
+    
+        // Polling a cada 10 segundos
+        this.paymentCheckInterval = setInterval(checkStatus, 10000);
+        checkStatus(); // Chamar imediatamente uma vez
+    },
+
     hide(modalId) {
         const modalData = this.modals.get(modalId);
         if (!modalData) {
             console.error(`Modal ${modalId} não encontrado`);
             return false;
         }
-
+    
         if (!modalData.isOpen) {
             console.warn(`Modal ${modalId} já está fechado`);
             return false;
+        }
+    
+        if (modalId === 'qr-modal' && this.paymentCheckInterval) {
+            clearInterval(this.paymentCheckInterval);
+            this.paymentCheckInterval = null;
         }
 
         // Callback antes de esconder
@@ -276,42 +309,58 @@ const Modal = {
         
         // Definir código PIX
         const pixInput = document.getElementById('pix-code-input');
-        pixInput.value = qrData.pixCode;
+        pixInput.value = qrData.pixCode || qrData.qrCode; // Fallback para qrCode se pixCode não existir
         
-        // Gerar QR Code
-        this.generateQRCode(qrData.pixCode);
+        // Gerar QR Code usando qrCodeBase64
+        this.generateQRCode(qrData.qrCodeBase64, qrData.pixId); // Passe pixId para iniciar polling
     },
 
-    generateQRCode(pixCode) {
+    generateQRCode(qrCodeBase64, pixId) {
         const qrContainer = document.getElementById('qr-code');
         qrContainer.innerHTML = ''; // Limpar conteúdo anterior
         
-        // Aqui você pode integrar uma biblioteca de QR Code como qrcode.js
-        // Por enquanto, vou criar um placeholder
-        const qrPlaceholder = document.createElement('div');
-        qrPlaceholder.style.cssText = `
-            width: 200px;
-            height: 200px;
-            background: #f0f0f0;
-            border: 2px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-            border-radius: 10px;
-        `;
-        qrPlaceholder.innerHTML = `
-            <div>
-                <div style="margin-bottom: 10px;">📱</div>
-                <div>QR Code do PIX</div>
-                <div style="font-size: 12px; margin-top: 5px;">Use o código abaixo para copiar e colar</div>
-            </div>
-        `;
-        
-        qrContainer.appendChild(qrPlaceholder);
-    }
+        if (qrCodeBase64) {
+            // Criar imagem a partir do base64
+            const qrImage = document.createElement('img');
+            qrImage.src = `data:image/png;base64,${qrCodeBase64}`;
+            qrImage.style.cssText = `
+                width: 200px;
+                height: 200px;
+                border: 2px solid #ddd;
+                border-radius: 10px;
+            `;
+            qrContainer.appendChild(qrImage);
+        } else {
+            // Fallback placeholder
+            const qrPlaceholder = document.createElement('div');
+            qrPlaceholder.style.cssText = `
+                width: 200px;
+                height: 200px;
+                background: #f0f0f0;
+                border: 2px solid #ddd;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                color: #666;
+                text-align: center;
+                border-radius: 10px;
+            `;
+            qrPlaceholder.innerHTML = `
+                <div>
+                    <div style="margin-bottom: 10px;">📱</div>
+                    <div>QR Code do PIX</div>
+                    <div style="font-size: 12px; margin-top: 5px;">Use o código abaixo para copiar e colar</div>
+                </div>
+            `;
+            qrContainer.appendChild(qrPlaceholder);
+        }
+    
+        // Iniciar verificação de status se pixId estiver presente
+        if (pixId) {
+            this.startPaymentCheck(pixId); // Adicione esta função (veja abaixo)
+        }
+    },
 };
 
 // Event listeners para funcionalidades específicas dos modais

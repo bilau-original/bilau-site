@@ -221,6 +221,15 @@ const API = {
         }
     },
 
+    async getDonationByPixId(pixId) {
+        try {
+            const response = await this.get(`/donations?pixId=${pixId}`); // Ajuste o endpoint conforme backend
+            return response.donation;
+        } catch (error) {
+            throw new Error(`HTTP ${error.status}: ${error.message}`);
+        }
+    },
+    
     // Confirmar pagamento (webhook simulation)
     async confirmPayment(donationId, paymentData) {
         try {
