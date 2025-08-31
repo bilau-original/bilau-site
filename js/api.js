@@ -163,20 +163,19 @@ const API = {
                 email: donationData.email || null,
                 timestamp: new Date().toISOString()
             };
-
+    
             const response = await this.post('/donations', data);
             
             return {
-                donationId: response.donationId || response.id || response._id,  // Adicione response._id
-                pixId: response.pixId || response.paymentId,  // Adicione para pixId
-                externalReference: response.externalReference,
-                pixCode: response.pixCode || response.qrCode,  // Aliases comuns
-                qrCodeBase64: response.qrCodeBase64,
-                qrCodeUrl: response.qrCodeUrl || response.ticket_url,  // Use ticket_url se for o link
-                expiresAt: response.expiresAt,
+                donationId: response.donation.id || response.donation._id,
+                pixId: response.payment.pixId, // Acessar aninhado
+                externalReference: response.payment.externalReference,
+                pixCode: response.payment.qrCode, // Ajustar para qrCode
+                qrCodeBase64: response.payment.qrCodeBase64,
+                qrCodeUrl: response.payment.ticketUrl,
+                expiresAt: response.payment.expiresAt,
                 ...response
-              };
-
+            };
         } catch (error) {
             console.error('Erro ao criar doação:', error);
             throw new Error('Falha ao processar doação. Tente novamente.');

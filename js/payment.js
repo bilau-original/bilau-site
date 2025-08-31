@@ -140,7 +140,7 @@ const Payment = {
     },
 
     // Iniciar verificação de status do pagamento
-    startPaymentCheck(donationId) {
+    startPaymentCheck(pixId) {
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
         }
@@ -149,7 +149,7 @@ const Payment = {
         
         this.checkInterval = setInterval(async () => {
             try {
-                const status = await API.checkPaymentStatus(donationId);
+                const status = await API.checkPaymentStatus(pixId);
                 
                 if (status.confirmed) {
                     this.handlePaymentSuccess(status);

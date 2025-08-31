@@ -138,33 +138,6 @@ const Modal = {
         return true;
     },
 
-    async startPaymentCheck(pixId) {
-        const checkStatus = async () => {
-            try {
-                const status = await API.checkPaymentStatus(pixId); // Assuma que API está definida globalmente
-                if (status === 'confirmed') {
-                    this.hide('qr-modal');
-                    // Chamar showPaymentConfirmed com dados da doação (precisa de integração com API)
-                    const donation = await API.getDonationByPixId(pixId); // Adicione essa função em api.js
-                    this.showPaymentConfirmed({
-                        amount: donation.amount,
-                        centimeters: donation.centimeters,
-                        email: donation.email,
-                        isCustom: donation.cardType === 'custom'
-                    });
-                } else if (status === 'expired') {
-                    this.hide('qr-modal');
-                    Toast.show('Pagamento expirado. Tente novamente.', 'error', 5000);
-                }
-            } catch (error) {
-                console.error('Erro ao verificar status:', error);
-            }
-        };
-    
-        // Polling a cada 10 segundos
-        this.paymentCheckInterval = setInterval(checkStatus, 10000);
-        checkStatus(); // Chamar imediatamente uma vez
-    },
 
     hide(modalId) {
         const modalData = this.modals.get(modalId);
