@@ -196,7 +196,7 @@ const API = {
     // =================== PAYMENT ENDPOINTS ===================
 
     // Verificar status do pagamento
-    async checkPaymentStatus(donationId) {
+    async checkPaymentStatus(pixId) {
         try {
             const response = await this.get(`/payments/status/pix/${pixId}`);  // Ajuste endpoint
             
