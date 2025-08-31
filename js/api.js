@@ -297,6 +297,7 @@ const API = {
     async healthCheck() {
         try {
             const response = await this.get('/health');
+            console.log(response.status)
             return response.status.toLowerCase === 'ok';
         } catch (error) {
             console.warn('API health check failed:', error.message);
