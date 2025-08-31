@@ -196,9 +196,9 @@ const API = {
     // =================== PAYMENT ENDPOINTS ===================
 
     // Verificar status do pagamento
-    async checkPaymentStatus(donationId) {
+    async checkPaymentStatus(pixId) {
         try {
-            const response = await this.get(`/payments/status/pix/${donationId}`);  // Ajuste endpoint
+            const response = await this.get(`/payments/status/pix/${pixId}`);  // Ajuste endpoint
             
             return {
                 confirmed: response.confirmed || response.status === 'confirmed',
