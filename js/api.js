@@ -298,7 +298,7 @@ const API = {
         try {
             const response = await this.get('/health');
             console.log(response.status)
-            return response.status.toLowerCase === 'ok';
+            return response.status == 'ok';
         } catch (error) {
             console.warn('API health check failed:', error.message);
             return false;
