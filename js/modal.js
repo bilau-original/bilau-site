@@ -329,10 +329,6 @@ const Modal = {
             qrContainer.appendChild(qrPlaceholder);
         }
     
-        // Iniciar verificação de status se pixId estiver presente
-        if (pixId) {
-            this.startPaymentCheck(pixId); // Adicione esta função (veja abaixo)
-        }
     },
 };
 

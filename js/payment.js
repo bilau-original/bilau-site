@@ -33,18 +33,19 @@ const Payment = {
             // Mostrar modal de QR
             Modal.showQRModal({
                 pixCode: pixData,
-                amount: amount
+                amount: amount,
+                pixId: pixId
             });
 
             // Adicionar à lista de pagamentos pendentes
-            this.addPendingPayment(donationId);
+            this.addPendingPayment(pixId);
 
             // Iniciar verificação de status
-            this.startPaymentCheck(donationId);
+            this.startPaymentCheck(pixId);
 
             // Auto-timeout após 30 minutos
             setTimeout(() => {
-                if (this.currentPayment && this.currentPayment.donationId === donationId) {
+                if (this.currentPayment && this.currentPayment.pixId === pixId) {
                     this.handlePaymentTimeout();
                 }
             }, 30 * 60 * 1000); // 30 minutos

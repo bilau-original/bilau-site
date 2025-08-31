@@ -476,7 +476,7 @@ const DonationForm = {
             Modal.hide('donation-modal');
             
             // Mostrar QR code
-            Payment.showQRCode(result.pixCode, result.amount, result.donationId);
+            Payment.showQRCode(result.pixCode, result.amount, result.donationId, result.pixId);
 
         } catch (error) {
             console.error('Erro ao criar doação:', error);
@@ -594,12 +594,12 @@ const App = {
         try {
             const pendingPayments = JSON.parse(localStorage.getItem('pendingPayments') || '[]');
             
-            for (const paymentId of pendingPayments) {
-                const status = await API.checkPaymentStatus(paymentId);
+            for (const pixId of pendingPayments) {
+                const status = await API.checkPaymentStatus(pixId);
                 
                 if (status.confirmed) {
                     // Remover da lista de pendentes
-                    const updatedPending = pendingPayments.filter(id => id !== paymentId);
+                    const updatedPending = pendingPayments.filter(id => id !== pixId);
                     localStorage.setItem('pendingPayments', JSON.stringify(updatedPending));
                     
                     // Atualizar interface
