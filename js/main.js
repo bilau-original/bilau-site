@@ -1,15 +1,17 @@
 // Estado global da aplicação
 const AppState = {
-    currentSize: 1652,
+    currentSize: 122,
     totalDonations: 0,
     currentVisual: 'default',
     donations: [],
     goals: {
         default: { name: 'Bilau', size: 0, unlocked: true },
-        aquatico: { name: 'Bilau Aquático', size: 500, unlocked: true },
-        cowboy: { name: 'Bilau Cowboy', size: 1000, unlocked: true },
-        ballz: { name: 'Bilau Ball Z', size: 1500, unlocked: true },
-        saiyajin: { name: 'Bilau Super Saiyajin', size: 2000, unlocked: false },
+        aquatico: { name: 'Bilau Aquático', size: 10, unlocked: true },
+        cowboy: { name: 'Bilau Cowboy', size: 20, unlocked: true },
+        bilinho: { name: 'Bilinho', size: 30, unlocked: true },
+        akatsuki: { name: 'Bilau Akatsuki', size: 40, unlocked: true },
+        ballz: { name: 'Bilau Ball Z', size: 50, unlocked: true },
+        saiyajin: { name: 'Bilau Super Saiyajin', size: 100, unlocked: true },
         unknown1: { name: '????', size: null, unlocked: false },
         unknown2: { name: '????', size: null, unlocked: false },
         unknown3: { name: '????', size: null, unlocked: false }

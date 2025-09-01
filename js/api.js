@@ -107,7 +107,7 @@ const API = {
         try {
             const stats = await this.get('/bilau/stats');
             return {
-                currentSize: stats.totalCentimeters || 1652,
+                currentSize: stats.totalCentimeters || 122,
                 totalDonations: stats.totalDonations || 0,
                 totalAmount: stats.totalAmount || 0,
                 currentVisual: stats.currentVisual || 'default',
@@ -118,7 +118,7 @@ const API = {
             console.error('Erro ao buscar stats do bilau:', error);
             // Retornar dados padrão se API falhar
             return {
-                currentSize: 1652,
+                currentSize: 122,
                 totalDonations: 0,
                 totalAmount: 0,
                 currentVisual: 'default',
@@ -313,10 +313,12 @@ const API = {
             console.error('Erro ao buscar configurações:', error);
             return {
                 goals: {
-                    aquatico: 500,
-                    cowboy: 1000,
-                    ballz: 1500,
-                    saiyajin: 2000
+                    aquatico: 10,
+                    cowboy: 20,
+                    bilinho: 30,
+                    akatsuki: 40,
+                    ballz: 50,
+                    saiyajin: 100
                 },
                 limits: {
                     minDonation: 1,
