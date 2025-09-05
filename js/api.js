@@ -198,28 +198,26 @@ const API = {
     // Verificar status do pagamento
     async checkPaymentStatus(pixId) {
         try {
-            const response = await this.get(`/payments/status/pix/${pixId}`);  // Ajuste endpoint
-            
-            return {
-                confirmed: response.confirmed || response.status === 'confirmed',
-                expired: response.expired || response.status === 'expired',
-                pending: response.pending || response.status === 'pending',
-                donation: response.donation,
-                paidAt: response.paidAt,
-                ...response
-            };
-
+          const response = await this.get(`/payments/status/pix/${pixId}`);
+      
+          return {
+            confirmed: response.localStatus === 'confirmed',
+            expired: response.localStatus === 'expired',
+            pending: response.localStatus === 'pending',
+            donation: response.donation,
+            paidAt: response.donation?.confirmedAt,
+            ...response
+          };
         } catch (error) {
-            console.error('Erro ao verificar status do pagamento:', error);
-            // Não fazer throw aqui para não quebrar a verificação periódica
-            return { 
-                confirmed: false, 
-                expired: false, 
-                pending: true,
-                error: error.message 
-            };
+          console.error('Erro ao verificar status do pagamento:', error);
+          return {
+            confirmed: false,
+            expired: false,
+            pending: true,
+            error: error.message
+          };
         }
-    },
+      },
 
     async getDonationByPixId(pixId) {
         try {
