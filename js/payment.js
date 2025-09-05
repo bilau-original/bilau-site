@@ -22,6 +22,7 @@ const Payment = {
     // Em Payment.showQRCode
     async showQRCode(pixData, amount, donationId, pixId) {
         try {
+        console.log('showQRCode chamado com pixId:', pixId);
         this.currentPayment = {
             pixCode: pixData,
             amount: amount,
