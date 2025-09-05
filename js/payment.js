@@ -19,41 +19,30 @@ const Payment = {
         });
     },
 
-    // Mostrar QR Code do PIX
+    // Em Payment.showQRCode
     async showQRCode(pixData, amount, donationId, pixId) {
         try {
-            this.currentPayment = {
-                pixCode: pixData,
-                amount: amount,
-                pixId: pixId,
-                donationId: donationId,
-                timestamp: Date.now()
-            };
-
-            // Mostrar modal de QR
-            Modal.showQRModal({
-                pixCode: pixData,
-                amount: amount,
-                pixId: pixId,
-                qrCodeBase64: this.currentPayment.qrCodeBase64 || '' // Adicionar se disponível
-            });
-
-            // Adicionar à lista de pagamentos pendentes
-            this.addPendingPayment(pixId);
-
-            // Iniciar verificação de status
-            this.startPaymentCheck(pixId);
-
-            // Auto-timeout após 30 minutos
-            setTimeout(() => {
-                if (this.currentPayment && this.currentPayment.pixId === pixId) {
-                    this.handlePaymentTimeout();
-                }
-            }, 30 * 60 * 1000); // 30 minutos
-
+        this.currentPayment = {
+            pixCode: pixData,
+            amount: amount,
+            pixId: pixId, // Garantir que pixId seja passado
+            donationId: donationId,
+            timestamp: Date.now()
+        };
+    
+        Modal.showQRModal({
+            pixCode: pixData,
+            amount: amount,
+            pixId: pixId,
+            qrCodeBase64: this.currentPayment.qrCodeBase64 || ''
+        });
+    
+        this.addPendingPayment(pixId);
+        this.startPaymentCheck(pixId); // Passar pixId diretamente
+    
         } catch (error) {
-            console.error('Erro ao mostrar QR Code:', error);
-            Toast.error('Erro ao gerar código de pagamento');
+        console.error('Erro ao mostrar QR Code:', error);
+        Toast.error('Erro ao gerar código de pagamento');
         }
     },
 
@@ -143,35 +132,32 @@ const Payment = {
 
     // Iniciar verificação de status do pagamento
     startPaymentCheck(pixId) {
-        if (this.checkInterval) {
-            clearInterval(this.checkInterval);
-        }
-
+        if (this.checkInterval) clearInterval(this.checkInterval);
         this.retryCount = 0;
-        
+    
         this.checkInterval = setInterval(async () => {
-            try {
-                const status = await API.checkPaymentStatus(pixId);
-                
-                if (status.confirmed) {
-                    this.handlePaymentSuccess(status);
-                } else if (status.expired) {
-                    this.handlePaymentExpired();
-                } else {
-                    this.retryCount++;
-                    if (this.retryCount >= this.maxRetries) {
-                        this.handlePaymentTimeout();
-                    }
-                }
-            } catch (error) {
-                console.error('Erro ao verificar pagamento:', error);
-                this.retryCount++;
-                
-                if (this.retryCount >= this.maxRetries) {
-                    this.handlePaymentTimeout();
-                }
+        try {
+            if (!pixId) {
+            console.error('pixId indefinido no checkPaymentStatus');
+            this.handlePaymentTimeout();
+            return;
             }
-        }, 30000); // Verificar a cada 30 segundos
+            const status = await API.checkPaymentStatus(pixId);
+    
+            if (status.confirmed) {
+            this.handlePaymentSuccess(status);
+            } else if (status.expired) {
+            this.handlePaymentExpired();
+            } else {
+            this.retryCount++;
+            if (this.retryCount >= this.maxRetries) this.handlePaymentTimeout();
+            }
+        } catch (error) {
+            console.error('Erro ao verificar pagamento:', error);
+            this.retryCount++;
+            if (this.retryCount >= this.maxRetries) this.handlePaymentTimeout();
+        }
+        }, 30000);
     },
 
     // Parar verificação de pagamento
