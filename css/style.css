@@ -56,6 +56,26 @@ html, body {
 }
 .top-buttons button:hover { background: var(--accent); }
 
+/* Donate button */
+#btn-donate {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; font-size: .85rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  color: #fff; text-decoration: none;
+  border: none; border-radius: var(--radius);
+  cursor: pointer; transition: .2s;
+  box-shadow: 0 0 12px rgba(232, 67, 147, .4);
+  animation: donate-pulse 2s ease-in-out infinite;
+}
+#btn-donate:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(232, 67, 147, .7);
+}
+@keyframes donate-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(232, 67, 147, .4); }
+  50% { box-shadow: 0 0 24px rgba(253, 203, 110, .6); }
+}
+
 /* ---------- Main Layout ---------- */
 #game-wrap {
   display: grid;

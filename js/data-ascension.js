@@ -1,7 +1,8 @@
 /* ============================================================
-   data-ascension.js – Prestígio / Melhorias Celestiais
+   data-ascension.js – Renascimento / Melhorias Celestiais
    Moeda de prestígio = "Chips de Testosterona" (CT)
    CT ganhos = floor( (totalCmEarned / 1e12) ^ 0.5 )
+   "Deu tudo errado? Tente renascer com mais testosterona..."
    ============================================================ */
 const AscensionData = {
   calcPrestige(totalCmEarned) {
@@ -10,6 +11,7 @@ const AscensionData = {
   },
 
   heavenlyUpgrades: [
+    // ──── TIER 1: Básicas (custo 1-25 CT) ────
     {
       id: 'hv_cps1',
       name: 'Crescimento Celestial I',
@@ -17,24 +19,6 @@ const AscensionData = {
       desc: '+5% CPS permanente por nível de prestígio.',
       cost: 1,
       effect: { type: 'prestige_cps_pct', value: 0.05 },
-    },
-    {
-      id: 'hv_cps2',
-      name: 'Crescimento Celestial II',
-      icon: '🧬',
-      desc: '+10% CPS permanente por nível de prestígio.',
-      cost: 10,
-      effect: { type: 'prestige_cps_pct', value: 0.10 },
-      req: 'hv_cps1',
-    },
-    {
-      id: 'hv_cps3',
-      name: 'Crescimento Celestial III',
-      icon: '🧬',
-      desc: '+20% CPS permanente por nível de prestígio.',
-      cost: 100,
-      effect: { type: 'prestige_cps_pct', value: 0.20 },
-      req: 'hv_cps2',
     },
     {
       id: 'hv_click1',
@@ -45,13 +29,12 @@ const AscensionData = {
       effect: { type: 'start_click', value: 10 },
     },
     {
-      id: 'hv_click2',
-      name: 'Soco Celestial',
-      icon: '👊',
-      desc: 'Comece cada rodada com +100 cm por clique.',
-      cost: 50,
-      effect: { type: 'start_click', value: 100 },
-      req: 'hv_click1',
+      id: 'hv_goldfreq',
+      name: 'Gotas de Sorte',
+      icon: '🍀',
+      desc: 'Gotas douradas aparecem 20% mais frequentemente.',
+      cost: 15,
+      effect: { type: 'gold_freq', value: 0.20 },
     },
     {
       id: 'hv_startcm',
@@ -61,14 +44,8 @@ const AscensionData = {
       cost: 25,
       effect: { type: 'start_cm', value: 1000 },
     },
-    {
-      id: 'hv_goldfreq',
-      name: 'Gotas de Sorte',
-      icon: '🍀',
-      desc: 'Gotas douradas aparecem 20% mais frequentemente.',
-      cost: 15,
-      effect: { type: 'gold_freq', value: 0.20 },
-    },
+
+    // ──── TIER 2: Intermediárias (custo 30-100 CT) ────
     {
       id: 'hv_golddur',
       name: 'Sorte Duradoura',
@@ -76,6 +53,24 @@ const AscensionData = {
       desc: 'Efeitos das gotas douradas duram 50% mais.',
       cost: 30,
       effect: { type: 'gold_dur', value: 0.50 },
+    },
+    {
+      id: 'hv_cps2',
+      name: 'Crescimento Celestial II',
+      icon: '🧬',
+      desc: '+10% CPS permanente por nível de prestígio.',
+      cost: 50,
+      effect: { type: 'prestige_cps_pct', value: 0.10 },
+      req: 'hv_cps1',
+    },
+    {
+      id: 'hv_click2',
+      name: 'Soco Celestial',
+      icon: '�',
+      desc: 'Comece cada rodada com +100 cm por clique.',
+      cost: 50,
+      effect: { type: 'start_click', value: 100 },
+      req: 'hv_click1',
     },
     {
       id: 'hv_buildcost',
@@ -86,12 +81,150 @@ const AscensionData = {
       effect: { type: 'build_discount', value: 0.05 },
     },
     {
+      id: 'hv_cps3',
+      name: 'Crescimento Celestial III',
+      icon: '🧬',
+      desc: '+20% CPS permanente por nível de prestígio.',
+      cost: 100,
+      effect: { type: 'prestige_cps_pct', value: 0.20 },
+      req: 'hv_cps2',
+    },
+
+    // ──── TIER 3: Avançadas (custo 150-500 CT) ────
+    {
       id: 'hv_evo',
       name: 'Evolução Rápida',
       icon: '🧪',
       desc: 'Limites de evolução reduzidos em 10%.',
-      cost: 200,
+      cost: 150,
       effect: { type: 'evo_discount', value: 0.10 },
+    },
+    {
+      id: 'hv_autoclick',
+      name: 'Mão Fantasma',
+      icon: '👻',
+      desc: 'Ganha 1 clique automático por segundo. Pra sempre.',
+      cost: 200,
+      effect: { type: 'auto_click', value: 1 },
+    },
+    {
+      id: 'hv_goldpower',
+      name: 'Gotas Turbinadas',
+      icon: '💧',
+      desc: 'Efeitos das gotas douradas são 2× mais fortes.',
+      cost: 250,
+      effect: { type: 'gold_power', value: 2 },
+    },
+    {
+      id: 'hv_buildcost2',
+      name: 'Desconto de Atacadão',
+      icon: '🏪',
+      desc: 'Todas as construções custam mais 10% menos.',
+      cost: 300,
+      effect: { type: 'build_discount', value: 0.10 },
+      req: 'hv_buildcost',
+    },
+    {
+      id: 'hv_startcm2',
+      name: 'Largada Turbo',
+      icon: '🚀',
+      desc: 'Comece cada rodada com cm = CT × 100.000.',
+      cost: 500,
+      effect: { type: 'start_cm', value: 100000 },
+      req: 'hv_startcm',
+    },
+
+    // ──── TIER 4: OP (custo 750-5000 CT) ────
+    {
+      id: 'hv_autoclick2',
+      name: 'Exército de Mãos',
+      icon: '🙌',
+      desc: 'Ganha 10 cliques automáticos por segundo.',
+      cost: 750,
+      effect: { type: 'auto_click', value: 10 },
+      req: 'hv_autoclick',
+    },
+    {
+      id: 'hv_cps4',
+      name: 'Testosterona Pura',
+      icon: '💉',
+      desc: '+50% CPS permanente por nível de prestígio.',
+      cost: 1000,
+      effect: { type: 'prestige_cps_pct', value: 0.50 },
+      req: 'hv_cps3',
+    },
+    {
+      id: 'hv_evo2',
+      name: 'Evolução Instantânea',
+      icon: '⚡',
+      desc: 'Limites de evolução reduzidos em mais 25%.',
+      cost: 1500,
+      effect: { type: 'evo_discount', value: 0.25 },
+      req: 'hv_evo',
+    },
+    {
+      id: 'hv_click3',
+      name: 'Martelada Divina',
+      icon: '🔨',
+      desc: 'Comece cada rodada com +10.000 cm por clique.',
+      cost: 2000,
+      effect: { type: 'start_click', value: 10000 },
+      req: 'hv_click2',
+    },
+    {
+      id: 'hv_megamult',
+      name: 'Mega Testosterona',
+      icon: '💪',
+      desc: 'CPS global ×3. Sim, triplica tudo.',
+      cost: 5000,
+      effect: { type: 'global_mult', value: 3 },
+    },
+
+    // ──── TIER 5: ULTRA OP (custo 7500-50000 CT) ────
+    {
+      id: 'hv_autoclick3',
+      name: 'Máquina de Crescer',
+      icon: '🤖',
+      desc: 'Ganha 50 cliques automáticos por segundo.',
+      cost: 7500,
+      effect: { type: 'auto_click', value: 50 },
+      req: 'hv_autoclick2',
+    },
+    {
+      id: 'hv_cps5',
+      name: 'Genética Superior',
+      icon: '🧬',
+      desc: '+100% CPS permanente por nível de prestígio.',
+      cost: 10000,
+      effect: { type: 'prestige_cps_pct', value: 1.0 },
+      req: 'hv_cps4',
+    },
+    {
+      id: 'hv_goldfreq2',
+      name: 'Chuva Dourada',
+      icon: '�️',
+      desc: 'Gotas douradas aparecem 50% mais frequentemente.',
+      cost: 15000,
+      effect: { type: 'gold_freq', value: 0.50 },
+      req: 'hv_goldfreq',
+    },
+    {
+      id: 'hv_megamult2',
+      name: 'Ultra Testosterona',
+      icon: '�',
+      desc: 'CPS global ×5. Quintuplicar é estilo de vida.',
+      cost: 25000,
+      effect: { type: 'global_mult', value: 5 },
+      req: 'hv_megamult',
+    },
+    {
+      id: 'hv_ultimate',
+      name: 'O Bilau Eterno',
+      icon: '✴️',
+      desc: 'CPS global ×10. Prestígio rende +100% CT. O ápice.',
+      cost: 50000,
+      effect: { type: 'ultimate', value: 10 },
+      req: 'hv_megamult2',
     },
   ],
 };

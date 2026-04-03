@@ -262,19 +262,20 @@ const UI = (() => {
     const currentPrestige = AscensionData.calcPrestige(S.totalCmAllTime);
 
     ascPanelWrap.innerHTML = `
-      <h2>Ascensão</h2>
+      <h2>Renascer</h2>
       <div class="asc-info">
-        Resete seu progresso para ganhar <b>Chips de Testosterona (CT)</b>.<br>
+        Deu tudo errado? Tente renascer com mais testosterona da próxima vez...<br>
+        Renasça e ganhe <b>Chips de Testosterona (CT)</b>.<br>
         CT dão um bônus permanente de CPS a cada rodada.
       </div>
       <div class="prestige-currency">
         🧪 ${availableTC} CT disponíveis (${S.totalTC} total ganhos)
       </div>
       <div class="asc-info">
-        Ascender agora vai render <b style="color:var(--gold)">${newTC}</b> CT<br>
+        Renascer agora vai render <b style="color:var(--gold)">${newTC}</b> CT<br>
         (Nível de prestígio: ${currentPrestige})
       </div>
-      <button id="btn-ascend" ${newTC <= 0 ? 'disabled' : ''}>Ascender (+${newTC} CT)</button>
+      <button id="btn-ascend" ${newTC <= 0 ? 'disabled' : ''}>Renascer (+${newTC} CT)</button>
       <hr style="margin:18px 0;border-color:var(--border);">
       <h3 style="color:var(--accent2);margin-bottom:10px;">Melhorias Celestiais</h3>
       <div id="heavenly-list"></div>
@@ -300,7 +301,7 @@ const UI = (() => {
     const btn = ascPanelWrap.querySelector('#btn-ascend');
     if (btn) {
       btn.addEventListener('click', () => {
-        if (confirm('Ascender? Você vai perder todas as construções, melhorias e cm, mas mantém conquistas e melhorias celestiais.')) {
+        if (confirm('Renascer? Você vai perder todas as construções, melhorias e cm, mas mantém conquistas e melhorias celestiais.')) {
           Engine.ascend();
         }
       });
@@ -312,7 +313,7 @@ const UI = (() => {
     if (btn) {
       const newTC = Engine.getPrestigeOnReset();
       btn.disabled = newTC <= 0;
-      btn.textContent = 'Ascender (+' + newTC + ' CT)';
+      btn.textContent = 'Renascer (+' + newTC + ' CT)';
     }
   }
 
@@ -463,9 +464,10 @@ const UI = (() => {
         <li>Clique para crescer o bilau</li>
         <li>Compre construções para cm/s passivo</li>
         <li>Adquira melhorias para turbinar a produção</li>
-        <li>Desbloqueie 10 estágios de evolução</li>
+        <li>Desbloqueie 40 estágios de evolução — do Broto ao Onibilau!</li>
         <li>Fique de olho nas gotas douradas (💧) — dão bônus!</li>
-        <li>Ascenda para ganhar Chips de Testosterona e bônus permanentes</li>
+        <li>Renasça para ganhar Chips de Testosterona e bônus permanentes</li>
+        <li>Melhorias celestiais OP: auto-clique, multiplicadores insanos e mais</li>
         <li>Colecione conquistas para +2% CPS cada</li>
       </ul>
       <p style="font-size:.8rem;color:var(--text-dim);">O jogo salva automaticamente a cada 30 segundos.</p>

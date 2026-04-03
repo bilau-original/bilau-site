@@ -84,6 +84,20 @@ const Engine = (() => {
     const prestigeLevel = AscensionData.calcPrestige(S.totalCmAllTime);
     globalMult *= 1 + pCpsPct * prestigeLevel;
 
+    // Heavenly global_mult (Mega/Ultra Testosterona)
+    AscensionData.heavenlyUpgrades.forEach(h => {
+      if (S.heavenlyOwned[h.id] && h.effect.type === 'global_mult') {
+        globalMult *= h.effect.value;
+      }
+    });
+
+    // Ultimate bonus (×10 CPS from O Bilau Eterno)
+    AscensionData.heavenlyUpgrades.forEach(h => {
+      if (S.heavenlyOwned[h.id] && h.effect.type === 'ultimate') {
+        globalMult *= h.effect.value;
+      }
+    });
+
     // Active effects (golden drops etc.)
     const now = Date.now();
     S.activeEffects = S.activeEffects.filter(e => e.endsAt > now);
@@ -252,24 +266,30 @@ const Engine = (() => {
     // Random effect
     const roll = Math.random();
     let baseDuration = 30000; // 30s
+    let goldPower = 1;
     AscensionData.heavenlyUpgrades.forEach(h => {
       if (S.heavenlyOwned[h.id] && h.effect.type === 'gold_dur') {
         baseDuration *= (1 + h.effect.value);
+      }
+      if (S.heavenlyOwned[h.id] && h.effect.type === 'gold_power') {
+        goldPower *= h.effect.value;
       }
     });
 
     let effect;
     if (roll < 0.4) {
-      // Frenzy: CPS ×7 for duration
-      effect = { type: 'cps_mult', mult: 7, endsAt: Date.now() + baseDuration };
-      Utils.emit('toast', { text: '🔥 Frenesi de Crescimento! CPS ×7 por ' + (baseDuration/1000) + 's!' });
+      // Frenzy: CPS ×7 for duration (boosted by goldPower)
+      const mult = Math.round(7 * goldPower);
+      effect = { type: 'cps_mult', mult: mult, endsAt: Date.now() + baseDuration };
+      Utils.emit('toast', { text: '🔥 Frenesi de Crescimento! CPS ×' + mult + ' por ' + (baseDuration/1000) + 's!' });
     } else if (roll < 0.7) {
-      // Click frenzy: clicks ×777
-      effect = { type: 'click_mult', mult: 777, endsAt: Date.now() + Math.floor(baseDuration * 0.4) };
-      Utils.emit('toast', { text: '⚡ Frenesi de Cliques! Cliques ×777!' });
+      // Click frenzy: clicks ×777 (boosted by goldPower)
+      const mult = Math.round(777 * goldPower);
+      effect = { type: 'click_mult', mult: mult, endsAt: Date.now() + Math.floor(baseDuration * 0.4) };
+      Utils.emit('toast', { text: '⚡ Frenesi de Cliques! Cliques ×' + mult + '!' });
     } else if (roll < 0.9) {
-      // Lucky: instant gain of 15 min of CPS
-      const gain = _cps * 900;
+      // Lucky: instant gain of 15 min of CPS (boosted by goldPower)
+      const gain = _cps * 900 * goldPower;
       S.cm += gain;
       S.totalCmEarned += gain;
       S.totalCmAllTime += gain;
@@ -277,9 +297,10 @@ const Engine = (() => {
       recalc();
       return;
     } else {
-      // Chain: CPS ×1234 for 3 seconds
-      effect = { type: 'cps_mult', mult: 1234, endsAt: Date.now() + 3000 };
-      Utils.emit('toast', { text: '⛓️ Corrente de Crescimento! CPS ×1234 por 3s!' });
+      // Chain: CPS ×1234 for 3 seconds (boosted by goldPower)
+      const mult = Math.round(1234 * goldPower);
+      effect = { type: 'cps_mult', mult: mult, endsAt: Date.now() + 3000 };
+      Utils.emit('toast', { text: '⛓️ Corrente de Crescimento! CPS ×' + mult + ' por 3s!' });
     }
     S.activeEffects.push(effect);
     recalc();
@@ -287,7 +308,14 @@ const Engine = (() => {
 
   /* ---------- Ascension ---------- */
   function getPrestigeOnReset() {
-    return AscensionData.calcPrestige(S.totalCmAllTime) - (S.totalTC);
+    let newTC = AscensionData.calcPrestige(S.totalCmAllTime) - (S.totalTC);
+    // Ultimate bonus: double CT gained
+    AscensionData.heavenlyUpgrades.forEach(h => {
+      if (S.heavenlyOwned[h.id] && h.effect.type === 'ultimate') {
+        newTC = Math.floor(newTC * 2);
+      }
+    });
+    return newTC;
   }
 
   function ascend() {
@@ -319,7 +347,7 @@ const Engine = (() => {
 
     recalc();
     Utils.emit('ascension', { tc: S.totalTC, ascensions: S.ascensions });
-    Utils.emit('toast', { text: '🔄 Ascendeu! Ganhou ' + newTC + ' Chips de Testosterona!' });
+    Utils.emit('toast', { text: '🔄 Renasceu! Ganhou ' + newTC + ' Chips de Testosterona!' });
     return true;
   }
 
@@ -337,6 +365,7 @@ const Engine = (() => {
   }
 
   /* ---------- Tick ---------- */
+  let _autoClickAcc = 0; // accumulator for fractional auto-clicks per frame
   function tick() {
     const now = Date.now();
     const dt = (now - S.lastTick) / 1000;
@@ -347,6 +376,25 @@ const Engine = (() => {
       S.cm += gain;
       S.totalCmEarned += gain;
       S.totalCmAllTime += gain;
+    }
+
+    // Auto-click from heavenly upgrades
+    let autoClicksPerSec = 0;
+    AscensionData.heavenlyUpgrades.forEach(h => {
+      if (S.heavenlyOwned[h.id] && h.effect.type === 'auto_click') {
+        autoClicksPerSec += h.effect.value;
+      }
+    });
+    if (autoClicksPerSec > 0) {
+      _autoClickAcc += autoClicksPerSec * dt;
+      while (_autoClickAcc >= 1) {
+        _autoClickAcc -= 1;
+        recalc();
+        const gain = _clickVal;
+        S.cm += gain;
+        S.totalCmEarned += gain;
+        S.totalCmAllTime += gain;
+      }
     }
 
     checkEvolutions();
