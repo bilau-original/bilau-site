@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penis Clicker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ====== NOTIFICATION TOAST ====== -->
+  <div id="toast-container"></div>
+
+  <!-- ====== GOLDEN DROP (random bonus) ====== -->
+  <div id="golden-drop" class="golden-drop hidden" title="Click me!">💧</div>
+
+  <!-- ====== TOP BAR ====== -->
+  <header id="top-bar">
+    <div class="stats-main">
+      <span id="cm-display">0 cm</span>
+      <span id="cps-display">per second: 0</span>
+    </div>
+    <div class="top-buttons">
+      <button id="btn-stats" title="Stats">📊</button>
+      <button id="btn-options" title="Options">⚙️</button>
+      <button id="btn-info" title="Info">ℹ️</button>
+    </div>
+  </header>
+
+  <!-- ====== MAIN LAYOUT ====== -->
+  <main id="game-wrap">
+
+    <!-- LEFT: Shop -->
+    <section id="panel-left" class="panel">
+      <div class="panel-tabs">
+        <button class="tab active" data-tab="buildings">Buildings</button>
+        <button class="tab" data-tab="upgrades">Upgrades</button>
+      </div>
+      <div id="tab-buildings" class="tab-content active">
+        <!-- populated by JS -->
+      </div>
+      <div id="tab-upgrades" class="tab-content">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- CENTER: Click area -->
+    <section id="panel-center" class="panel">
+      <div id="evolution-label">Stage 1: The Sprout</div>
+      <div id="click-area">
+        <div id="penis-visual">
+          <!-- placeholder asset — replaced by evolutions -->
+          <div id="penis-placeholder">🍆</div>
+        </div>
+        <div id="click-particles"></div>
+      </div>
+      <div id="evolution-progress-wrap">
+        <div id="evolution-progress-bar"></div>
+        <span id="evolution-progress-text"></span>
+      </div>
+    </section>
+
+    <!-- RIGHT: Evolutions + Prestige -->
+    <section id="panel-right" class="panel">
+      <div class="panel-tabs">
+        <button class="tab active" data-tab="evolutions">Evolutions</button>
+        <button class="tab" data-tab="ascension">Ascension</button>
+        <button class="tab" data-tab="achievements">Achievements</button>
+      </div>
+      <div id="tab-evolutions" class="tab-content active">
+        <div id="evolutions-list"></div>
+      </div>
+      <div id="tab-ascension" class="tab-content">
+        <div id="ascension-panel"></div>
+      </div>
+      <div id="tab-achievements" class="tab-content">
+        <div id="achievements-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== MODALS ====== -->
+  <div id="modal-overlay" class="hidden">
+    <div id="modal-box">
+      <button id="modal-close">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ====== SCRIPTS (order matters) ====== -->
+  <script src="js/utils.js"></script>
+  <script src="js/data-buildings.js"></script>
+  <script src="js/data-upgrades.js"></script>
+  <script src="js/data-evolutions.js"></script>
+  <script src="js/data-achievements.js"></script>
+  <script src="js/data-ascension.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
