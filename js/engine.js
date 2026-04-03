@@ -262,24 +262,24 @@ const Engine = (() => {
     if (roll < 0.4) {
       // Frenzy: CPS ×7 for duration
       effect = { type: 'cps_mult', mult: 7, endsAt: Date.now() + baseDuration };
-      Utils.emit('toast', { text: '🔥 Growth Frenzy! CPS ×7 for ' + (baseDuration/1000) + 's!' });
+      Utils.emit('toast', { text: '🔥 Frenesi de Crescimento! CPS ×7 por ' + (baseDuration/1000) + 's!' });
     } else if (roll < 0.7) {
       // Click frenzy: clicks ×777
       effect = { type: 'click_mult', mult: 777, endsAt: Date.now() + Math.floor(baseDuration * 0.4) };
-      Utils.emit('toast', { text: '⚡ Click Frenzy! Clicks ×777!' });
+      Utils.emit('toast', { text: '⚡ Frenesi de Cliques! Cliques ×777!' });
     } else if (roll < 0.9) {
       // Lucky: instant gain of 15 min of CPS
       const gain = _cps * 900;
       S.cm += gain;
       S.totalCmEarned += gain;
       S.totalCmAllTime += gain;
-      Utils.emit('toast', { text: '🍀 Lucky! +' + Utils.formatCm(gain) + '!' });
+      Utils.emit('toast', { text: '🍀 Sorte! +' + Utils.formatCm(gain) + '!' });
       recalc();
       return;
     } else {
       // Chain: CPS ×1234 for 3 seconds
       effect = { type: 'cps_mult', mult: 1234, endsAt: Date.now() + 3000 };
-      Utils.emit('toast', { text: '⛓️ Growth Chain! CPS ×1234 for 3s!' });
+      Utils.emit('toast', { text: '⛓️ Corrente de Crescimento! CPS ×1234 por 3s!' });
     }
     S.activeEffects.push(effect);
     recalc();
@@ -319,7 +319,7 @@ const Engine = (() => {
 
     recalc();
     Utils.emit('ascension', { tc: S.totalTC, ascensions: S.ascensions });
-    Utils.emit('toast', { text: '🔄 Ascended! Gained ' + newTC + ' Testosterone Chips!' });
+    Utils.emit('toast', { text: '🔄 Ascendeu! Ganhou ' + newTC + ' Chips de Testosterona!' });
     return true;
   }
 

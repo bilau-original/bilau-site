@@ -2,18 +2,18 @@
    utils.js – Number formatting, helpers
    ============================================================ */
 const Utils = (() => {
-  /* Suffixes for "short scale" display */
+  /* Sufixos para exibição numérica */
   const SUFFIXES = [
-    '', ' thousand', ' million', ' billion', ' trillion', ' quadrillion',
-    ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion',
-    ' decillion', ' undecillion', ' duodecillion', ' tredecillion',
-    ' quattuordecillion', ' quindecillion', ' sexdecillion', ' septendecillion',
-    ' octodecillion', ' novemdecillion', ' vigintillion',
-    ' unvigintillion', ' duovigintillion', ' trevigintillion',
-    ' quattuorvigintillion', ' quinvigintillion', ' sexvigintillion',
-    ' septenvigintillion', ' octovigintillion', ' novemvigintillion',
-    ' trigintillion', ' untrigintillion', ' duotrigintillion',
-    ' infinity'
+    '', ' mil', ' milhão', ' bilhão', ' trilhão', ' quatrilhão',
+    ' quintilhão', ' sextilhão', ' septilhão', ' octilhão', ' nonilhão',
+    ' decilhão', ' undecilhão', ' duodecilhão', ' tredecilhão',
+    ' quattuordecilhão', ' quindecilhão', ' sexdecilhão', ' septendecilhão',
+    ' octodecilhão', ' novemdecilhão', ' vigintilhão',
+    ' unvigintilhão', ' duovigintilhão', ' trevigintilhão',
+    ' quattuorvigintilhão', ' quinvigintilhão', ' sexvigintilhão',
+    ' septenvigintilhão', ' octovigintilhão', ' novemvigintilhão',
+    ' trigintilhão', ' untrigintilhão', ' duotrigintilhão',
+    ' infinito'
   ];
 
   function formatNumber(n) {

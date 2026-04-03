@@ -53,7 +53,7 @@ const UI = (() => {
     Utils.on('tick', onTick);
     Utils.on('click', onClickParticle);
     Utils.on('evolution', () => { updateEvoVisual(); renderEvolutions(); });
-    Utils.on('achievement', (a) => showToast('🏅 Achievement: ' + a.name));
+    Utils.on('achievement', (a) => showToast('🏅 Conquista: ' + a.name));
     Utils.on('golden_spawn', spawnGolden);
     Utils.on('toast', (d) => showToast(d.text));
     Utils.on('ascension', () => { renderAll(); });
@@ -115,7 +115,7 @@ const UI = (() => {
   function onTick() {
     const S = Engine.getState();
     cmDisplay.textContent = Utils.formatCm(S.cm);
-    cpsDisplay.textContent = 'per second: ' + Utils.formatCm(Engine.getCps());
+    cpsDisplay.textContent = 'por segundo: ' + Utils.formatCm(Engine.getCps());
 
     // Evolution progress
     const curEvo = EvolutionsData[S.currentEvo];
@@ -123,10 +123,10 @@ const UI = (() => {
     if (nextEvo) {
       const pct = Math.min(100, (S.totalCmEarned - curEvo.threshold) / (nextEvo.threshold - curEvo.threshold) * 100);
       evoBar.style.width = pct + '%';
-      evoText.textContent = 'Next: ' + nextEvo.name + ' (' + pct.toFixed(1) + '%)';
+      evoText.textContent = 'Próximo: ' + nextEvo.name + ' (' + pct.toFixed(1) + '%)';
     } else {
       evoBar.style.width = '100%';
-      evoText.textContent = 'MAX EVOLUTION';
+      evoText.textContent = 'EVOLUÇÃO MÁXIMA';
     }
 
     // Update building affordability
@@ -136,10 +136,10 @@ const UI = (() => {
       const cost = Engine.buildingCost(bData, S.buildings[id] || 0);
       card.classList.toggle('cant-afford', S.cm < cost);
       card.querySelector('.cost').textContent = Utils.formatCm(cost);
-      card.querySelector('.owned').textContent = 'Owned: ' + (S.buildings[id] || 0);
+      card.querySelector('.owned').textContent = 'Qtd: ' + (S.buildings[id] || 0);
       const bMult = S.buildingMults[id] || 1;
       const indivCps = bData.baseCps * bMult * S.globalMult;
-      card.querySelector('.production').textContent = 'each: ' + Utils.formatCm(indivCps) + '/s';
+      card.querySelector('.production').textContent = 'cada: ' + Utils.formatCm(indivCps) + '/s';
     });
 
     // Update upgrade visibility
@@ -171,8 +171,8 @@ const UI = (() => {
         <div class="info">
           <div class="name">${b.name}</div>
           <div class="cost">${Utils.formatCm(cost)}</div>
-          <div class="owned">Owned: ${owned}</div>
-          <div class="production">each: ${Utils.formatCm(b.baseCps * (S.buildingMults[b.id]||1) * S.globalMult)}/s</div>
+          <div class="owned">Qtd: ${owned}</div>
+          <div class="production">cada: ${Utils.formatCm(b.baseCps * (S.buildingMults[b.id]||1) * S.globalMult)}/s</div>
         </div>`;
       card.addEventListener('click', () => {
         Engine.buyBuilding(b.id);
@@ -227,7 +227,7 @@ const UI = (() => {
         <div class="evo-icon">${ev.icon}</div>
         <div class="evo-info">
           <div class="evo-name">${unlocked ? ev.name : '???'}${selected ? ' ✦' : ''}</div>
-          <div class="evo-req">${unlocked ? ev.description : 'Reach ' + Utils.formatCm(ev.threshold) + ' total'}</div>
+          <div class="evo-req">${unlocked ? ev.description : 'Alcance ' + Utils.formatCm(ev.threshold) + ' no total'}</div>
         </div>`;
       if (unlocked) {
         card.style.cursor = 'pointer';
@@ -245,7 +245,7 @@ const UI = (() => {
     const S = Engine.getState();
     const evo = EvolutionsData[S.selectedEvo];
     if (!evo) return;
-    evoLabel.textContent = 'Stage ' + (S.selectedEvo + 1) + ': ' + evo.name;
+    evoLabel.textContent = 'Estágio ' + (S.selectedEvo + 1) + ': ' + evo.name;
     // Use asset if available, otherwise emoji placeholder
     if (evo.asset) {
       penisPlaceholder.innerHTML = `<img src="${evo.asset}" alt="${evo.name}" style="max-width:200px;max-height:200px;">`;
@@ -262,21 +262,21 @@ const UI = (() => {
     const currentPrestige = AscensionData.calcPrestige(S.totalCmAllTime);
 
     ascPanelWrap.innerHTML = `
-      <h2>Ascension</h2>
+      <h2>Ascensão</h2>
       <div class="asc-info">
-        Reset your progress to earn <b>Testosterone Chips (TC)</b>.<br>
-        TC give a permanent CPS bonus each run.
+        Resete seu progresso para ganhar <b>Chips de Testosterona (CT)</b>.<br>
+        CT dão um bônus permanente de CPS a cada rodada.
       </div>
       <div class="prestige-currency">
-        🧪 ${availableTC} TC available (${S.totalTC} total earned)
+        🧪 ${availableTC} CT disponíveis (${S.totalTC} total ganhos)
       </div>
       <div class="asc-info">
-        Ascending now will earn <b style="color:var(--gold)">${newTC}</b> TC<br>
-        (Prestige level: ${currentPrestige})
+        Ascender agora vai render <b style="color:var(--gold)">${newTC}</b> CT<br>
+        (Nível de prestígio: ${currentPrestige})
       </div>
-      <button id="btn-ascend" ${newTC <= 0 ? 'disabled' : ''}>Ascend (+${newTC} TC)</button>
+      <button id="btn-ascend" ${newTC <= 0 ? 'disabled' : ''}>Ascender (+${newTC} CT)</button>
       <hr style="margin:18px 0;border-color:var(--border);">
-      <h3 style="color:var(--accent2);margin-bottom:10px;">Heavenly Upgrades</h3>
+      <h3 style="color:var(--accent2);margin-bottom:10px;">Melhorias Celestiais</h3>
       <div id="heavenly-list"></div>
     `;
 
@@ -290,7 +290,7 @@ const UI = (() => {
       el.className = 'heavenly-upgrade' + (owned ? ' owned' : '') + (!reqMet ? ' locked' : '');
       el.textContent = h.icon;
       el.addEventListener('click', () => Engine.buyHeavenly(h.id));
-      el.addEventListener('mouseenter', (e) => showTooltip(e, h.name, h.cost + ' TC', h.desc));
+      el.addEventListener('mouseenter', (e) => showTooltip(e, h.name, h.cost + ' CT', h.desc));
       el.addEventListener('mousemove', moveTooltip);
       el.addEventListener('mouseleave', hideTooltip);
       hvList.appendChild(el);
@@ -300,7 +300,7 @@ const UI = (() => {
     const btn = ascPanelWrap.querySelector('#btn-ascend');
     if (btn) {
       btn.addEventListener('click', () => {
-        if (confirm('Ascend? You will lose all buildings, upgrades, and cm, but keep achievements and heavenly upgrades.')) {
+        if (confirm('Ascender? Você vai perder todas as construções, melhorias e cm, mas mantém conquistas e melhorias celestiais.')) {
           Engine.ascend();
         }
       });
@@ -312,7 +312,7 @@ const UI = (() => {
     if (btn) {
       const newTC = Engine.getPrestigeOnReset();
       btn.disabled = newTC <= 0;
-      btn.textContent = 'Ascend (+' + newTC + ' TC)';
+      btn.textContent = 'Ascender (+' + newTC + ' CT)';
     }
   }
 
@@ -326,7 +326,7 @@ const UI = (() => {
     // Show count
     const header = document.createElement('div');
     header.style.cssText = 'margin-bottom:10px;color:var(--gold);font-weight:700;';
-    header.textContent = '🏅 ' + unlocked.length + ' / ' + AchievementsData.length + ' achievements (+' + (unlocked.length * 2) + '% CPS bonus)';
+    header.textContent = '🏅 ' + unlocked.length + ' / ' + AchievementsData.length + ' conquistas (+' + (unlocked.length * 2) + '% bônus CPS)';
     achListWrap.appendChild(header);
 
     [...unlocked, ...locked].forEach(a => {
@@ -406,49 +406,49 @@ const UI = (() => {
   function showStats() {
     const S = Engine.getState();
     openModal(`
-      <h2 style="color:var(--accent2)">📊 Statistics</h2>
-      <p><b>Current length:</b> ${Utils.formatCm(S.cm)}</p>
-      <p><b>Total grown (this run):</b> ${Utils.formatCm(S.totalCmEarned)}</p>
-      <p><b>Total grown (all time):</b> ${Utils.formatCm(S.totalCmAllTime)}</p>
+      <h2 style="color:var(--accent2)">📊 Estatísticas</h2>
+      <p><b>Tamanho atual:</b> ${Utils.formatCm(S.cm)}</p>
+      <p><b>Total crescido (essa rodada):</b> ${Utils.formatCm(S.totalCmEarned)}</p>
+      <p><b>Total crescido (geral):</b> ${Utils.formatCm(S.totalCmAllTime)}</p>
       <p><b>CPS:</b> ${Utils.formatCm(Engine.getCps())}</p>
-      <p><b>Click value:</b> ${Utils.formatCm(Engine.getClickVal())}</p>
-      <p><b>Total clicks:</b> ${Utils.formatNumber(S.totalClicks)}</p>
-      <p><b>Golden drops clicked:</b> ${S.goldenClicks}</p>
-      <p><b>Ascensions:</b> ${S.ascensions}</p>
-      <p><b>TC earned:</b> ${S.totalTC}</p>
-      <p><b>Achievements:</b> ${Object.keys(S.achievements).length} / ${AchievementsData.length}</p>
-      <p><b>Evolution:</b> Stage ${S.currentEvo + 1} - ${EvolutionsData[S.currentEvo].name}</p>
+      <p><b>Valor do clique:</b> ${Utils.formatCm(Engine.getClickVal())}</p>
+      <p><b>Total de cliques:</b> ${Utils.formatNumber(S.totalClicks)}</p>
+      <p><b>Gotas douradas clicadas:</b> ${S.goldenClicks}</p>
+      <p><b>Ascensões:</b> ${S.ascensions}</p>
+      <p><b>CT ganhos:</b> ${S.totalTC}</p>
+      <p><b>Conquistas:</b> ${Object.keys(S.achievements).length} / ${AchievementsData.length}</p>
+      <p><b>Evolução:</b> Estágio ${S.currentEvo + 1} - ${EvolutionsData[S.currentEvo].name}</p>
     `);
   }
 
   function showOptions() {
     openModal(`
-      <h2 style="color:var(--accent2)">⚙️ Options</h2>
+      <h2 style="color:var(--accent2)">⚙️ Opções</h2>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
-        <button class="opt-btn" id="opt-save">💾 Save Game</button>
-        <button class="opt-btn" id="opt-export">📤 Export Save</button>
-        <button class="opt-btn" id="opt-import">📥 Import Save</button>
-        <button class="opt-btn" id="opt-reset" style="color:var(--red)">🗑️ Hard Reset (delete all)</button>
+        <button class="opt-btn" id="opt-save">💾 Salvar Jogo</button>
+        <button class="opt-btn" id="opt-export">📤 Exportar Save</button>
+        <button class="opt-btn" id="opt-import">📥 Importar Save</button>
+        <button class="opt-btn" id="opt-reset" style="color:var(--red)">🗑️ Resetar Tudo (apagar tudo)</button>
       </div>
       <style>.opt-btn{padding:10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text);border-radius:var(--radius);cursor:pointer;font-size:.9rem;}.opt-btn:hover{border-color:var(--accent);}</style>
     `);
     setTimeout(() => {
-      document.getElementById('opt-save')?.addEventListener('click', () => { Engine.save(); showToast('Game saved!'); closeModal(); });
+      document.getElementById('opt-save')?.addEventListener('click', () => { Engine.save(); showToast('Jogo salvo!'); closeModal(); });
       document.getElementById('opt-export')?.addEventListener('click', () => {
         const data = Engine.exportSave();
-        navigator.clipboard.writeText(data).then(() => showToast('Save copied to clipboard!'));
+        navigator.clipboard.writeText(data).then(() => showToast('Save copiado!'));
         closeModal();
       });
       document.getElementById('opt-import')?.addEventListener('click', () => {
-        const data = prompt('Paste your save string:');
-        if (data && Engine.importSave(data)) { showToast('Save imported!'); renderAll(); } else { showToast('Invalid save!'); }
+        const data = prompt('Cole sua string de save aqui:');
+        if (data && Engine.importSave(data)) { showToast('Save importado!'); renderAll(); } else { showToast('Save inválido!'); }
         closeModal();
       });
       document.getElementById('opt-reset')?.addEventListener('click', () => {
-        if (confirm('Are you sure? This will DELETE ALL progress permanently!')) {
+        if (confirm('Tem certeza? Isso vai APAGAR TODO o progresso permanentemente!')) {
           Engine.hardReset();
           renderAll();
-          showToast('Game reset.');
+          showToast('Jogo resetado.');
           closeModal();
         }
       });
@@ -457,18 +457,18 @@ const UI = (() => {
 
   function showInfo() {
     openModal(`
-      <h2 style="color:var(--accent2)">ℹ️ Penis Clicker</h2>
-      <p>An incremental game inspired by Cookie Clicker.</p>
+      <h2 style="color:var(--accent2)">ℹ️ Bilau Clicker</h2>
+      <p>Um jogo incremental inspirado em Cookie Clicker.</p>
       <ul style="margin:10px 0 10px 20px;color:var(--text-dim);font-size:.9rem;">
-        <li>Click to grow your length</li>
-        <li>Buy buildings for passive cm/s</li>
-        <li>Purchase upgrades to boost production</li>
-        <li>Unlock 10 evolution stages</li>
-        <li>Watch for golden drops (💧) for bonuses!</li>
-        <li>Ascend to earn Testosterone Chips for permanent boosts</li>
-        <li>Collect achievements for +2% CPS each</li>
+        <li>Clique para crescer o bilau</li>
+        <li>Compre construções para cm/s passivo</li>
+        <li>Adquira melhorias para turbinar a produção</li>
+        <li>Desbloqueie 10 estágios de evolução</li>
+        <li>Fique de olho nas gotas douradas (💧) — dão bônus!</li>
+        <li>Ascenda para ganhar Chips de Testosterona e bônus permanentes</li>
+        <li>Colecione conquistas para +2% CPS cada</li>
       </ul>
-      <p style="font-size:.8rem;color:var(--text-dim);">Game auto-saves every 30 seconds.</p>
+      <p style="font-size:.8rem;color:var(--text-dim);">O jogo salva automaticamente a cada 30 segundos.</p>
     `);
   }
 

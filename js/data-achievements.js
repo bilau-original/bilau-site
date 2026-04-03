@@ -8,17 +8,17 @@ const AchievementsData = (() => {
 
   /* Total cm milestones */
   const cmMilestones = [
-    [100, 'Baby Steps', '🐣', 'Reach 100 cm total.'],
-    [1000, 'Growth Spurt', '📏', 'Reach 1,000 cm total.'],
-    [1e4, 'Respectable', '📐', 'Reach 10,000 cm total.'],
-    [1e5, 'Impressive', '🏆', 'Reach 100,000 cm total.'],
-    [1e6, 'Legendary', '⭐', 'Reach 1 million cm total.'],
-    [1e8, 'World Record', '🌎', 'Reach 100 million cm total.'],
-    [1e10, 'Continental', '🗺️', 'Reach 10 billion cm total.'],
-    [1e13, 'Astronomical', '🔭', 'Reach 10 trillion cm total.'],
-    [1e16, 'Cosmic', '🌌', 'Reach 10 quadrillion cm total.'],
-    [1e20, 'Omniscale', '✴️', 'Reach 100 quintillion cm total.'],
-    [1e25, 'Beyond Measure', '♾️', 'Reach 10 septillion cm total.'],
+    [100, 'Primeiros Passos', '🐣', 'Alcance 100 cm no total.'],
+    [1000, 'Estirão', '📏', 'Alcance 1.000 cm no total.'],
+    [1e4, 'Respeitável', '📐', 'Alcance 10.000 cm no total.'],
+    [1e5, 'Impressionante', '🏆', 'Alcance 100.000 cm no total.'],
+    [1e6, 'Lendário', '⭐', 'Alcance 1 milhão de cm no total.'],
+    [1e8, 'Recorde Mundial', '🌎', 'Alcance 100 milhões de cm no total.'],
+    [1e10, 'Continental', '🗺️', 'Alcance 10 bilhões de cm no total.'],
+    [1e13, 'Astronômico', '🔭', 'Alcance 10 trilhões de cm no total.'],
+    [1e16, 'Cósmico', '🌌', 'Alcance 10 quadrilhões de cm no total.'],
+    [1e20, 'Oniscala', '✴️', 'Alcance 100 quintilhões de cm no total.'],
+    [1e25, 'Além da Medida', '♾️', 'Alcance 10 septilhões de cm no total.'],
   ];
   cmMilestones.forEach(([val, name, icon, desc]) => {
     add({ id: 'cm_' + val, name, icon, desc, check: (s) => s.totalCmEarned >= val });
@@ -26,10 +26,10 @@ const AchievementsData = (() => {
 
   /* Click milestones */
   const clickMilestones = [
-    [100, 'Clicker', '👆', 'Click 100 times.'],
-    [1000, 'Dedicated Clicker', '🖱️', 'Click 1,000 times.'],
-    [10000, 'Obsessive Clicker', '🤌', 'Click 10,000 times.'],
-    [100000, 'Carpal Tunnel', '🦴', 'Click 100,000 times.'],
+    [100, 'Clicador', '👆', 'Clique 100 vezes.'],
+    [1000, 'Clicador Dedicado', '🖱️', 'Clique 1.000 vezes.'],
+    [10000, 'Clicador Obsessivo', '🤌', 'Clique 10.000 vezes.'],
+    [100000, 'Tendinite', '🦴', 'Clique 100.000 vezes.'],
   ];
   clickMilestones.forEach(([val, name, icon, desc]) => {
     add({ id: 'click_' + val, name, icon, desc, check: (s) => s.totalClicks >= val });
@@ -40,9 +40,9 @@ const AchievementsData = (() => {
     [1, 50, 100, 200].forEach(n => {
       add({
         id: b.id + '_' + n,
-        name: n + ' ' + b.name + (n > 1 ? 's' : ''),
+        name: n + ' ' + b.name,
         icon: b.icon,
-        desc: 'Own ' + n + ' ' + b.name + '(s).',
+        desc: 'Tenha ' + n + ' ' + b.name + '.',
         check: (s) => (s.buildings[b.id] || 0) >= n
       });
     });
@@ -52,9 +52,9 @@ const AchievementsData = (() => {
   [1, 5, 10, 25].forEach(n => {
     add({
       id: 'ascend_' + n,
-      name: 'Ascended ' + n + 'x',
+      name: 'Ascendeu ' + n + 'x',
       icon: '🔄',
-      desc: 'Ascend ' + n + ' time(s).',
+      desc: 'Ascenda ' + n + ' vez(es).',
       check: (s) => s.ascensions >= n
     });
   });
