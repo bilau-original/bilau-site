@@ -9,8 +9,8 @@ Acesse [bilau.com.br](https://bilau.com.br) pra jogar!
 ## Funcionalidades
 
 - **Clique pra crescer** — cada clique adiciona cm ao seu bilau
-- **16 Construções** — de Mãozinha Amiga até Ocioverso, gerando cm/s passivo
-- **60+ Melhorias** — poder de clique, multiplicadores, turbos por construção
+- **36 Construções** — de Mãozinha Amiga até Singularidade do Onibilau, gerando cm/s passivo
+- **100+ Melhorias** — poder de clique, multiplicadores, turbos por construção
 - **40 Estágios de Evolução** — do 🌱 O Broto ao ✴️ O Onibilau, passando por fases cósmicas, dimensionais e divinas
 - **Gotas Douradas** 💧 — eventos bônus aleatórios (Frenesi, Frenesi de Clique, Sorte, Corrente)
 - **Sistema Renascer** — deu tudo errado? Renasça com mais testosterona! Ganhe CT com bônus permanentes

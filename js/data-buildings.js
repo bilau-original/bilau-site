@@ -46,9 +46,9 @@ const BuildingsData = [
   },
   {
     id: 'clinic',
-    name: 'Clínica de Aumento',
+    name: 'Consultoria com o Kid',
     icon: '🏥',
-    description: 'Procedimentos profissionais. 260 cm/s.',
+    description: 'Conhecimentos profissionais. 260 cm/s.',
     baseCost: 130000,
     baseCps: 260,
     growthRate: 1.15,
@@ -66,7 +66,7 @@ const BuildingsData = [
   },
   {
     id: 'reactor',
-    name: 'Reator Nuclear',
+    name: 'Reatóra Nuclear',
     icon: '☢️',
     description: 'Alargamento atômico. 7.800 cm/s.',
     baseCost: 20000000,
@@ -76,7 +76,7 @@ const BuildingsData = [
   },
   {
     id: 'collider',
-    name: 'Colisor de Partículas',
+    name: 'Colisor de Pautículas',
     icon: '⚛️',
     description: 'Expansão subatômica. 44.000 cm/s.',
     baseCost: 330000000,
@@ -86,9 +86,9 @@ const BuildingsData = [
   },
   {
     id: 'portal',
-    name: 'Portal Dimensional',
+    name: 'Portal Dimensioanal',
     icon: '🌀',
-    description: 'Crescimento de outras dimensões. 260.000 cm/s.',
+    description: 'Expansão de outras dimensões. 260.000 cm/s.',
     baseCost: 5100000000,
     baseCps: 260000,
     growthRate: 1.15,
@@ -96,7 +96,7 @@ const BuildingsData = [
   },
   {
     id: 'timemachine',
-    name: 'Máquina do Tempo',
+    name: 'Uma Máquina Minha do Tempo',
     icon: '⏰',
     description: 'Traz crescimento do futuro. 1.600.000 cm/s.',
     baseCost: 75000000000,
@@ -106,7 +106,7 @@ const BuildingsData = [
   },
   {
     id: 'antimatter',
-    name: 'Condensador de Antimatéria',
+    name: 'Condensador de Antimamatéria',
     icon: '🌌',
     description: 'Condensa antimatéria em comprimento puro. 10.000.000 cm/s.',
     baseCost: 1000000000000,
@@ -126,7 +126,7 @@ const BuildingsData = [
   },
   {
     id: 'chancemaker',
-    name: 'Motor de Probabilidade',
+    name: 'Motor de Paubabilidade',
     icon: '🎰',
     description: 'Distorce a probabilidade a seu favor. 430.000.000 cm/s.',
     baseCost: 170000000000000,
@@ -136,7 +136,7 @@ const BuildingsData = [
   },
   {
     id: 'fractal',
-    name: 'Motor Fractal',
+    name: 'Expausão Fractal',
     icon: '🔮',
     description: 'Crescimento recursivo sobre crescimento. 2.900.000.000 cm/s.',
     baseCost: 2100000000000000,
@@ -146,7 +146,7 @@ const BuildingsData = [
   },
   {
     id: 'javascript',
-    name: 'Console Javascript',
+    name: 'Consolo Javascript',
     icon: '📜',
     description: 'document.bilau.tamanho++; 21.000.000.000 cm/s.',
     baseCost: 26000000000000000,
@@ -156,7 +156,7 @@ const BuildingsData = [
   },
   {
     id: 'idleverse',
-    name: 'Ocioverso',
+    name: 'Universo Ocioso',
     icon: '🪐',
     description: 'Colhe crescimento de universos ociosos. 150.000.000.000 cm/s.',
     baseCost: 310000000000000000,
@@ -167,7 +167,7 @@ const BuildingsData = [
   // ──────── NOVOS BUILDINGS ────────
   {
     id: 'blackhole',
-    name: 'Buraco Negro',
+    name: 'Bilaco Negro',
     icon: '🕳️',
     description: 'Suga matéria e cospe comprimento. 1,1 trilhão cm/s.',
     baseCost: 4e18,
@@ -177,7 +177,7 @@ const BuildingsData = [
   },
   {
     id: 'dyson',
-    name: 'Esfera de Dyson',
+    name: 'Cilindro de Dyson',
     icon: '☀️',
     description: 'Coleta a energia de uma estrela inteira pra crescer. 8,3 trilhões cm/s.',
     baseCost: 5e19,
@@ -187,7 +187,7 @@ const BuildingsData = [
   },
   {
     id: 'quantum',
-    name: 'Computador Quântico',
+    name: 'Computador Bilântico',
     icon: '🖥️',
     description: 'Calcula o bilau perfeito em todos os estados simultaneamente. 64 trilhões cm/s.',
     baseCost: 7e20,
@@ -197,7 +197,7 @@ const BuildingsData = [
   },
   {
     id: 'nebula',
-    name: 'Berçário de Nebulosa',
+    name: 'Berçário de Nebilosa',
     icon: '🌫️',
     description: 'Transforma nuvens de gás em centímetros. 500 trilhões cm/s.',
     baseCost: 9e21,
@@ -207,7 +207,7 @@ const BuildingsData = [
   },
   {
     id: 'galaxy',
-    name: 'Colheitadeira Galáctica',
+    name: 'Colheitadeira Engasgaláctica',
     icon: '🌌',
     description: 'Colhe crescimento de galáxias inteiras. 4 quadrilhões cm/s.',
     baseCost: 1.2e23,
@@ -217,9 +217,9 @@ const BuildingsData = [
   },
   {
     id: 'bigbang',
-    name: 'Mini Big Bang',
+    name: 'Big Bingola',
     icon: '💥',
-    description: 'Cria mini universos que explodem em comprimento. 32 quadrilhões cm/s.',
+    description: 'Cria universos que explodem em comprimento. 32 quadrilhões cm/s.',
     baseCost: 1.5e24,
     baseCps: 3.2e16,
     growthRate: 1.15,
@@ -227,9 +227,9 @@ const BuildingsData = [
   },
   {
     id: 'multiverse',
-    name: 'Colônia Multiversal',
+    name: 'Culônia Multiversátil',
     icon: '🪞',
-    description: 'Fazendas de bilau em universos paralelos. 260 quadrilhões cm/s.',
+    description: 'Fazendas de agrado de bilau em universos paralelos. 260 quadrilhões cm/s.',
     baseCost: 2e25,
     baseCps: 2.6e17,
     growthRate: 1.15,
@@ -247,9 +247,9 @@ const BuildingsData = [
   },
   {
     id: 'darkmatter',
-    name: 'Refinaria de Matéria Escura',
+    name: 'Masturbador de Matéria Escura',
     icon: '🌑',
-    description: 'Refina a matéria invisível em crescimento visível. 17 quintilhões cm/s.',
+    description: 'Coleta a matéria invisível em crescimento visível. 17 quintilhões cm/s.',
     baseCost: 3.3e27,
     baseCps: 1.7e19,
     growthRate: 1.15,
@@ -257,9 +257,9 @@ const BuildingsData = [
   },
   {
     id: 'darkenergy',
-    name: 'Gerador de Energia Escura',
+    name: 'Gozador de Energia Escura',
     icon: '⚡',
-    description: 'A força que expande o universo... e o bilau. 140 quintilhões cm/s.',
+    description: 'Libera a força que expande o universo... e o bilau. 140 quintilhões cm/s.',
     baseCost: 4.2e28,
     baseCps: 1.4e20,
     growthRate: 1.15,
@@ -267,7 +267,7 @@ const BuildingsData = [
   },
   {
     id: 'timefactory',
-    name: 'Fábrica Temporal',
+    name: 'Fápica Temporal',
     icon: '⏰',
     description: 'Produz bilau no passado, presente e futuro. 1,2 sextilhões cm/s.',
     baseCost: 5.5e29,
@@ -277,9 +277,9 @@ const BuildingsData = [
   },
   {
     id: 'dreamweaver',
-    name: 'Tecelão de Sonhos',
+    name: 'Empaulador de Sonhos',
     icon: '💤',
-    description: 'Sonha bilaus tão fortes que viram realidade. 10 sextilhões cm/s.',
+    description: 'Invade sonhos e transforma bilau em realidade. 10 sextilhões cm/s.',
     baseCost: 7e30,
     baseCps: 1e22,
     growthRate: 1.15,
@@ -287,7 +287,7 @@ const BuildingsData = [
   },
   {
     id: 'realityengine',
-    name: 'Motor de Realidade',
+    name: 'Superpausição de Realidade',
     icon: '🔧',
     description: 'Reescreve as leis da física a favor do bilau. 85 sextilhões cm/s.',
     baseCost: 9e31,
@@ -297,7 +297,7 @@ const BuildingsData = [
   },
   {
     id: 'platonic',
-    name: 'Forja Platônica',
+    name: 'Forja Pautônica',
     icon: '🔥',
     description: 'Forja a forma perfeita e ideal do bilau. 710 sextilhões cm/s.',
     baseCost: 1.2e33,
@@ -307,7 +307,7 @@ const BuildingsData = [
   },
   {
     id: 'mathengine',
-    name: 'Motor Matemático',
+    name: 'Motor Mamatemático',
     icon: '🧮',
     description: 'Calcula bilaus com precisão infinita. 6 septilhões cm/s.',
     baseCost: 1.5e34,
@@ -327,7 +327,7 @@ const BuildingsData = [
   },
   {
     id: 'miracle',
-    name: 'Fábrica de Milagres',
+    name: 'Fábrica de Bilagres',
     icon: '✨',
     description: 'Cada milagre = +1 continente de bilau. 430 septilhões cm/s.',
     baseCost: 2.5e36,
@@ -347,7 +347,7 @@ const BuildingsData = [
   },
   {
     id: 'absolute',
-    name: 'Trono do Absoluto',
+    name: 'Trono do Abilausuto',
     icon: '🔱',
     description: 'A cadeira onde o bilau governa toda a existência. 30 octilhões cm/s.',
     baseCost: 4.2e38,
