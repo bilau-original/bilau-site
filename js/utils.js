@@ -49,6 +49,22 @@ const Utils = (() => {
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 
+  /**
+   * Render an icon as either an <img> tag (if it's a file path) or raw emoji text.
+   * @param {string} icon - emoji string OR path to an image (e.g. 'assets/buildings/hand.png')
+   * @param {number} [size=32] - pixel size for the image
+   * @returns {string} HTML string
+   */
+  function renderIcon(icon, size = 32) {
+    if (!icon) return '';
+    // If it looks like a file path (contains / or . followed by extension), render as <img>
+    if (/\.(png|jpe?g|gif|svg|webp)$/i.test(icon)) {
+      return `<img src="${icon}" alt="" class="icon-img" style="width:${size}px;height:${size}px;">`;
+    }
+    // Otherwise it's an emoji, return as-is
+    return icon;
+  }
+
   /* simple event bus */
   const _listeners = {};
   function on(evt, fn) {
@@ -58,5 +74,5 @@ const Utils = (() => {
     (_listeners[evt] || []).forEach(fn => fn(data));
   }
 
-  return { formatNumber, formatCm, randomInt, lerp, on, emit, SUFFIXES };
+  return { formatNumber, formatCm, randomInt, lerp, renderIcon, on, emit, SUFFIXES };
 })();

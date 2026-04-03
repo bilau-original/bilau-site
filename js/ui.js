@@ -167,7 +167,7 @@ const UI = (() => {
       card.className = 'building-card' + (visible ? '' : ' locked') + (S.cm < cost ? ' cant-afford' : '');
       card.dataset.id = b.id;
       card.innerHTML = `
-        <div class="icon">${b.icon}</div>
+        <div class="icon">${Utils.renderIcon(b.icon, 36)}</div>
         <div class="info">
           <div class="name">${b.name}</div>
           <div class="cost">${Utils.formatCm(cost)}</div>
@@ -203,7 +203,7 @@ const UI = (() => {
       const card = document.createElement('div');
       card.className = 'upgrade-card' + (S.upgrades[u.id] ? ' owned' : '') + (!visible ? ' locked' : '');
       card.dataset.id = u.id;
-      card.textContent = u.icon;
+      card.innerHTML = Utils.renderIcon(u.icon, 36);
       card.addEventListener('click', () => {
         Engine.buyUpgrade(u.id);
       });
@@ -224,7 +224,7 @@ const UI = (() => {
       const card = document.createElement('div');
       card.className = 'evo-card ' + (unlocked ? 'unlocked' : 'locked') + (selected ? ' selected' : '');
       card.innerHTML = `
-        <div class="evo-icon">${ev.icon}</div>
+        <div class="evo-icon">${Utils.renderIcon(ev.icon, 36)}</div>
         <div class="evo-info">
           <div class="evo-name">${unlocked ? ev.name : '???'}${selected ? ' ✦' : ''}</div>
           <div class="evo-req">${unlocked ? ev.description : 'Alcance ' + Utils.formatCm(ev.threshold) + ' no total'}</div>
@@ -248,7 +248,7 @@ const UI = (() => {
     evoLabel.textContent = 'Estágio ' + (S.selectedEvo + 1) + ': ' + evo.name;
     // Use asset if available, otherwise emoji placeholder
     if (evo.asset) {
-      penisPlaceholder.innerHTML = `<img src="${evo.asset}" alt="${evo.name}" style="max-width:200px;max-height:200px;">`;
+      penisPlaceholder.innerHTML = Utils.renderIcon(evo.asset, 200);
     } else {
       penisPlaceholder.textContent = evo.placeholder;
     }
@@ -288,7 +288,7 @@ const UI = (() => {
       const reqMet = !h.req || S.heavenlyOwned[h.req];
       const el = document.createElement('div');
       el.className = 'heavenly-upgrade' + (owned ? ' owned' : '') + (!reqMet ? ' locked' : '');
-      el.textContent = h.icon;
+      el.innerHTML = Utils.renderIcon(h.icon, 36);
       el.addEventListener('click', () => Engine.buyHeavenly(h.id));
       el.addEventListener('mouseenter', (e) => showTooltip(e, h.name, h.cost + ' CT', h.desc));
       el.addEventListener('mousemove', moveTooltip);
@@ -334,7 +334,7 @@ const UI = (() => {
       const card = document.createElement('div');
       card.className = 'ach-card ' + (isUnlocked ? '' : 'locked');
       card.innerHTML = `
-        <div class="ach-icon">${isUnlocked ? a.icon : '❓'}</div>
+        <div class="ach-icon">${isUnlocked ? Utils.renderIcon(a.icon, 28) : '❓'}</div>
         <div class="ach-info">
           <div class="ach-name">${isUnlocked ? a.name : '???'}</div>
           <div class="ach-desc">${isUnlocked ? a.desc : '???'}</div>
