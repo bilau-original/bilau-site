@@ -107,7 +107,7 @@ const BuildingsData = [
   {
     id: 'antimatter',
     name: 'Condensador de Antimamatéria',
-    icon: '🌌',
+    icon: 'assets/buildings/11.png',
     description: 'Condensa antimatéria em comprimento puro. 10.000.000 cm/s.',
     baseCost: 1000000000000,
     baseCps: 10000000,
@@ -117,7 +117,7 @@ const BuildingsData = [
   {
     id: 'prism',
     name: 'Prisma de Crescimento',
-    icon: '💎',
+    icon: 'assets/buildings/12.png',
     description: 'Refrata luz em crescimento puro. 65.000.000 cm/s.',
     baseCost: 14000000000000,
     baseCps: 65000000,
@@ -127,7 +127,7 @@ const BuildingsData = [
   {
     id: 'chancemaker',
     name: 'Motor de Paubabilidade',
-    icon: '🎰',
+    icon: 'assets/buildings/13.png',
     description: 'Distorce a probabilidade a seu favor. 430.000.000 cm/s.',
     baseCost: 170000000000000,
     baseCps: 430000000,
@@ -137,7 +137,7 @@ const BuildingsData = [
   {
     id: 'fractal',
     name: 'Expausão Fractal',
-    icon: '🔮',
+    icon: 'assets/buildings/14.png',
     description: 'Crescimento recursivo sobre crescimento. 2.900.000.000 cm/s.',
     baseCost: 2100000000000000,
     baseCps: 2900000000,
@@ -147,7 +147,7 @@ const BuildingsData = [
   {
     id: 'javascript',
     name: 'Consolo de Javascript',
-    icon: '📜',
+    icon: 'assets/buildings/15.png',
     description: 'document.bilau.tamanho++; 21.000.000.000 cm/s.',
     baseCost: 26000000000000000,
     baseCps: 21000000000,
@@ -157,7 +157,7 @@ const BuildingsData = [
   {
     id: 'idleverse',
     name: 'Sêmen Original',
-    icon: '🪐',
+    icon: 'assets/buildings/16.png',
     description: 'A origem do universo através do sêmen. 150.000.000.000 cm/s.',
     baseCost: 310000000000000000,
     baseCps: 150000000000,
@@ -168,7 +168,7 @@ const BuildingsData = [
   {
     id: 'blackhole',
     name: 'Bilaco Negro',
-    icon: '🕳️',
+    icon: 'assets/buildings/17.png',
     description: 'Suga matéria e cospe comprimento. 1,1 trilhão cm/s.',
     baseCost: 4e18,
     baseCps: 1.1e12,
@@ -178,7 +178,7 @@ const BuildingsData = [
   {
     id: 'dyson',
     name: 'Cilindro de Dyson',
-    icon: '☀️',
+    icon: 'assets/buildings/18.png',
     description: 'Coleta a energia de uma estrela cilíndrica pra crescer. 8,3 trilhões cm/s.',
     baseCost: 5e19,
     baseCps: 8.3e12,
@@ -188,7 +188,7 @@ const BuildingsData = [
   {
     id: 'quantum',
     name: 'Computador Bilântico',
-    icon: '🖥️',
+    icon: 'assets/buildings/19.png',
     description: 'Calcula o bilau perfeito em todos os estados simultaneamente. 64 trilhões cm/s.',
     baseCost: 7e20,
     baseCps: 6.4e13,
@@ -198,7 +198,7 @@ const BuildingsData = [
   {
     id: 'nebula',
     name: 'Berçário de Nebilosa',
-    icon: '🌫️',
+    icon: 'assets/buildings/20.png',
     description: 'Transforma nuvens de gás em centímetros. 500 trilhões cm/s.',
     baseCost: 9e21,
     baseCps: 5e14,
@@ -208,7 +208,7 @@ const BuildingsData = [
   {
     id: 'galaxy',
     name: 'Colheitadeira Engasgaláctica',
-    icon: '🌌',
+    icon: 'assets/buildings/21.png',
     description: 'Colhe crescimento de galáxias inteiras. 4 quadrilhões cm/s.',
     baseCost: 1.2e23,
     baseCps: 4e15,
@@ -218,7 +218,7 @@ const BuildingsData = [
   {
     id: 'bigbang',
     name: 'Big Benga',
-    icon: '💥',
+    icon: 'assets/buildings/22.png',
     description: 'Cria universos que explodem em comprimento. 32 quadrilhões cm/s.',
     baseCost: 1.5e24,
     baseCps: 3.2e16,
@@ -228,7 +228,7 @@ const BuildingsData = [
   {
     id: 'multiverse',
     name: 'Culônia Multiversal',
-    icon: '🪞',
+    icon: 'assets/buildings/23.png',
     description: 'Fazendas de agrado de bilau em universos paralelos. 260 quadrilhões cm/s.',
     baseCost: 2e25,
     baseCps: 2.6e17,
@@ -238,7 +238,7 @@ const BuildingsData = [
   {
     id: 'stringtheory',
     name: 'Vibrador de Cordas',
-    icon: '🎸',
+    icon: 'assets/buildings/24.png',
     description: 'Manipula as cordas fundamentais da realidade. 2,1 quintilhões cm/s.',
     baseCost: 2.5e26,
     baseCps: 2.1e18,
@@ -248,7 +248,7 @@ const BuildingsData = [
   {
     id: 'darkmatter',
     name: 'Coletóra Escura',
-    icon: '🌑',
+    icon: 'assets/buildings/25.png',
     description: 'Coleta e transforma a matéria escura em crescimento. 17 quintilhões cm/s.',
     baseCost: 3.3e27,
     baseCps: 1.7e19,
@@ -258,7 +258,7 @@ const BuildingsData = [
   {
     id: 'darkenergy',
     name: 'Liberador de Semergia Escura',
-    icon: '⚡',
+    icon: 'assets/buildings/26.png',
     description: 'Libera a força que expande o universo... e o bilau. 140 quintilhões cm/s.',
     baseCost: 4.2e28,
     baseCps: 1.4e20,
@@ -268,7 +268,7 @@ const BuildingsData = [
   {
     id: 'timefactory',
     name: 'Fabricaralho Atemporal',
-    icon: '⏰',
+    icon: 'assets/buildings/27.png',
     description: 'Produz bilau no passado, presente e futuro. 1,2 sextilhões cm/s.',
     baseCost: 5.5e29,
     baseCps: 1.2e21,
@@ -278,7 +278,7 @@ const BuildingsData = [
   {
     id: 'dreamweaver',
     name: 'Empaulador de Sonhos',
-    icon: '💤',
+    icon: 'assets/buildings/28.png',
     description: 'Penetra em sonhos e transforma bilau em realidade. 10 sextilhões cm/s.',
     baseCost: 7e30,
     baseCps: 1e22,
@@ -288,7 +288,7 @@ const BuildingsData = [
   {
     id: 'realityengine',
     name: 'Superpausição de Realidade',
-    icon: '🔧',
+    icon: 'assets/buildings/29.png',
     description: 'Reescreve as leis da física a favor do bilau. 85 sextilhões cm/s.',
     baseCost: 9e31,
     baseCps: 8.5e22,
@@ -298,7 +298,7 @@ const BuildingsData = [
   {
     id: 'platonic',
     name: 'Forja Pautônica',
-    icon: '🔥',
+    icon: 'assets/buildings/30.png',
     description: 'Forja a forma perfeita e ideal do bilau. 710 sextilhões cm/s.',
     baseCost: 1.2e33,
     baseCps: 7.1e23,
@@ -308,7 +308,7 @@ const BuildingsData = [
   {
     id: 'mathengine',
     name: 'Motor Mamatemático',
-    icon: '🧮',
+    icon: 'assets/buildings/31.png',
     description: 'Calcula bilaus com precisão infinita. 6 septilhões cm/s.',
     baseCost: 1.5e34,
     baseCps: 6e24,
@@ -318,7 +318,7 @@ const BuildingsData = [
   {
     id: 'prayer',
     name: 'Templo do Bilau',
-    icon: '🛕',
+    icon: 'assets/buildings/32.png',
     description: 'Fiéis rezam 24/7 pelo crescimento. 50 septilhões cm/s.',
     baseCost: 2e35,
     baseCps: 5e25,
@@ -328,7 +328,7 @@ const BuildingsData = [
   {
     id: 'miracle',
     name: 'Fábrica de Bilagres',
-    icon: '✨',
+    icon: 'assets/buildings/33.png',
     description: 'Cada milagre = +1 universo de bilau. 430 septilhões cm/s.',
     baseCost: 2.5e36,
     baseCps: 4.3e26,
@@ -338,7 +338,7 @@ const BuildingsData = [
   {
     id: 'creation',
     name: 'Recepicátulo da Criação',
-    icon: '🌅',
+    icon: 'assets/buildings/34.png',
     description: 'O Ser que cria novos universos dedicados ao bilau. 3,6 octilhões cm/s.',
     baseCost: 3.3e37,
     baseCps: 3.6e27,
@@ -348,7 +348,7 @@ const BuildingsData = [
   {
     id: 'absolute',
     name: 'Trono Abilausuto',
-    icon: '🔱',
+    icon: 'assets/buildings/35.png',
     description: 'A cadeira onde o bilau governa toda a existência. 30 octilhões cm/s.',
     baseCost: 4.2e38,
     baseCps: 3e28,
@@ -358,7 +358,7 @@ const BuildingsData = [
   {
     id: 'onibilau',
     name: 'Pingularidade Final',
-    icon: '✴️',
+    icon: 'assets/buildings/36.png',
     description: 'O ponto onde tudo converge em bilau puro e infinito. 250 octilhões cm/s.',
     baseCost: 5.5e39,
     baseCps: 2.5e29,
