@@ -7,14 +7,14 @@ const EvolutionsData = [
   // ──────── FASE 1: O COMEÇO HUMILDE (evo 1-5) ────────
   {
     id: 'evo1', name: 'Pequênis',
-    icon: '🌱', asset: null, placeholder: '🍆',
+    icon: '🌱', asset: 'assets/evolutions/1.gif', placeholder: '🍆',
     threshold: 0,
     description: 'Um começo humilde. Todo mundo começa pequeno.',
     bonusMult: 1,
   },
   {
     id: 'evo2', name: 'Bilinho',
-    icon: '🥒', asset: null, placeholder: '🥒',
+    icon: '🥒', asset: 'assets/evolutions/2.gif', placeholder: '🥒',
     threshold: 1000,
     description: 'Pequeno e brincalhão.',
     bonusMult: 1.02,
@@ -118,7 +118,7 @@ const EvolutionsData = [
   // ──────── FASE 4: ESCALA ASTRONÔMICA (evo 16-20) ────────
   {
     id: 'evo16', name: 'Bilau Akatsuki',
-    icon: '🛸', asset: null, placeholder: '🛸',
+    icon: '🛸', asset: 'assets/evolutions/16.gif', placeholder: '🛸',
     threshold: 5e17,
     description: 'Vai catucar o seu bijuu.',
     bonusMult: 1.30,
@@ -139,7 +139,7 @@ const EvolutionsData = [
   },
   {
     id: 'evo19', name: 'Bilau Super Saiyajin',
-    icon: '☀️', asset: null, placeholder: '☀️',
+    icon: '☀️', asset: 'assets/evolutions/19.gif', placeholder: '☀️',
     threshold: 5e21,
     description: 'O lendário Super Saiyajin era um pênis?',
     bonusMult: 1.40,
