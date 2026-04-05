@@ -7,14 +7,14 @@ const EvolutionsData = [
   // ──────── FASE 1: O COMEÇO HUMILDE (evo 1-5) ────────
   {
     id: 'evo1', name: 'Pequênis',
-    icon: '🌱', asset: 'assets/evolutions/1.gif', placeholder: '🍆',
+    icon: 'assets/evolutions/1.gif', asset: 'assets/evolutions/1.gif', placeholder: '🍆',
     threshold: 0,
     description: 'Um começo humilde. Todo mundo começa pequeno.',
     bonusMult: 1,
   },
   {
     id: 'evo2', name: 'Bilinho',
-    icon: '🥒', asset: 'assets/evolutions/2.gif', placeholder: '🥒',
+    icon: 'assets/evolutions/2.gif', asset: 'assets/evolutions/2.gif', placeholder: '🥒',
     threshold: 1000,
     description: 'Pequeno e brincalhão.',
     bonusMult: 1.02,

@@ -159,28 +159,58 @@ const UI = (() => {
   function renderBuildings() {
     const S = Engine.getState();
     buildingsWrap.innerHTML = '';
-    BuildingsData.forEach(b => {
+
+    // Find the index of the last unlocked building
+    let lastUnlockedIdx = -1;
+    BuildingsData.forEach((b, i) => {
+      if (S.totalCmEarned >= b.unlockAt || (S.buildings[b.id] || 0) > 0) {
+        lastUnlockedIdx = i;
+      }
+    });
+    const revealLimit = lastUnlockedIdx + 5; // show up to 5 past the last unlocked
+
+    BuildingsData.forEach((b, idx) => {
       const owned = S.buildings[b.id] || 0;
       const cost = Engine.buildingCost(b, owned);
-      const visible = S.totalCmEarned >= b.unlockAt || owned > 0;
+      const unlocked = S.totalCmEarned >= b.unlockAt || owned > 0;
+      const hidden = idx > revealLimit; // beyond the reveal window
+
+      if (hidden) return; // don't render at all
+
       const card = document.createElement('div');
-      card.className = 'building-card' + (visible ? '' : ' locked') + (S.cm < cost ? ' cant-afford' : '');
+      const isRevealed = unlocked; // unlocked = fully visible
+      const isTeased = !unlocked;  // locked but within 5 — show as ???
+      card.className = 'building-card'
+        + (isTeased ? ' locked' : '')
+        + (!isTeased && S.cm < cost ? ' cant-afford' : '');
       card.dataset.id = b.id;
-      card.innerHTML = `
-        <div class="icon">${Utils.renderIcon(b.icon, 36)}</div>
-        <div class="info">
-          <div class="name">${b.name}</div>
-          <div class="cost">${Utils.formatCm(cost)}</div>
-          <div class="owned">Qtd: ${owned}</div>
-          <div class="production">cada: ${Utils.formatCm(b.baseCps * (S.buildingMults[b.id]||1) * S.globalMult)}/s</div>
-        </div>`;
-      card.addEventListener('click', () => {
-        Engine.buyBuilding(b.id);
-      });
-      // Tooltip
-      card.addEventListener('mouseenter', (e) => showTooltip(e, b.name, Utils.formatCm(cost), b.description));
-      card.addEventListener('mousemove', moveTooltip);
-      card.addEventListener('mouseleave', hideTooltip);
+
+      if (isTeased) {
+        card.innerHTML = `
+          <div class="icon">❓</div>
+          <div class="info">
+            <div class="name">???</div>
+            <div class="cost">???</div>
+            <div class="owned"></div>
+            <div class="production"></div>
+          </div>`;
+      } else {
+        card.innerHTML = `
+          <div class="icon">${Utils.renderIcon(b.icon, 36)}</div>
+          <div class="info">
+            <div class="name">${b.name}</div>
+            <div class="cost">${Utils.formatCm(cost)}</div>
+            <div class="owned">Qtd: ${owned}</div>
+            <div class="production">cada: ${Utils.formatCm(b.baseCps * (S.buildingMults[b.id]||1) * S.globalMult)}/s</div>
+          </div>`;
+        card.addEventListener('click', () => {
+          Engine.buyBuilding(b.id);
+        });
+        // Tooltip only for unlocked
+        card.addEventListener('mouseenter', (e) => showTooltip(e, b.name, Utils.formatCm(cost), b.description));
+        card.addEventListener('mousemove', moveTooltip);
+        card.addEventListener('mouseleave', hideTooltip);
+      }
       buildingsWrap.appendChild(card);
     });
   }
@@ -218,24 +248,38 @@ const UI = (() => {
   function renderEvolutions() {
     const S = Engine.getState();
     evoListWrap.innerHTML = '';
+    const revealLimit = S.currentEvo + 5; // show up to 5 past the last unlocked
+
     EvolutionsData.forEach((ev, i) => {
       const unlocked = i <= S.currentEvo;
       const selected = i === S.selectedEvo;
+      const hidden = i > revealLimit;
+
+      if (hidden) return; // don't render at all
+
       const card = document.createElement('div');
       card.className = 'evo-card ' + (unlocked ? 'unlocked' : 'locked') + (selected ? ' selected' : '');
-      card.innerHTML = `
-        <div class="evo-icon">${Utils.renderIcon(ev.icon, 36)}</div>
-        <div class="evo-info">
-          <div class="evo-name">${unlocked ? ev.name : '???'}${selected ? ' ✦' : ''}</div>
-          <div class="evo-req">${unlocked ? ev.description : 'Alcance ' + Utils.formatCm(ev.threshold) + ' no total'}</div>
-        </div>`;
+
       if (unlocked) {
+        card.innerHTML = `
+          <div class="evo-icon">${Utils.renderIcon(ev.icon, 36)}</div>
+          <div class="evo-info">
+            <div class="evo-name">${ev.name}${selected ? ' ✦' : ''}</div>
+            <div class="evo-req">${ev.description}</div>
+          </div>`;
         card.style.cursor = 'pointer';
         card.addEventListener('click', () => {
           Engine.setSelectedEvo(i);
           renderEvolutions();
           updateEvoVisual();
         });
+      } else {
+        card.innerHTML = `
+          <div class="evo-icon">❓</div>
+          <div class="evo-info">
+            <div class="evo-name">???</div>
+            <div class="evo-req">Alcance ${Utils.formatCm(ev.threshold)} no total</div>
+          </div>`;
       }
       evoListWrap.appendChild(card);
     });
