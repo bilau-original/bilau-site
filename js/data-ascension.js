@@ -89,6 +89,14 @@ const AscensionData = {
       effect: { type: 'prestige_cps_pct', value: 0.20 },
       req: 'hv_cps2',
     },
+    {
+      id: 'hv_offline1',
+      name: 'Sonho de Crescimento',
+      icon: '🌙',
+      desc: 'Produção offline sobe de 50% para 75% do CPS.',
+      cost: 100,
+      effect: { type: 'offline_pct', value: 0.25 },
+    },
 
     // ──── TIER 3: Avançadas (custo 150-500 CT) ────
     {
@@ -178,6 +186,15 @@ const AscensionData = {
       desc: 'CPS global ×3. Sim, triplica tudo.',
       cost: 5000,
       effect: { type: 'global_mult', value: 3 },
+    },
+    {
+      id: 'hv_offline2',
+      name: 'Sonâmbilau',
+      icon: '😴',
+      desc: 'Produção offline sobe para 100% do CPS. Cresce até dormindo!',
+      cost: 5000,
+      effect: { type: 'offline_pct', value: 0.25 },
+      req: 'hv_offline1',
     },
 
     // ──── TIER 5: ULTRA OP (custo 7500-50000 CT) ────

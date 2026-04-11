@@ -410,16 +410,58 @@ const Engine = (() => {
     } catch (e) { /* quota */ }
   }
 
+  let _offlineReport = null; // { seconds, cmGained } – read by UI after init
+
   function load() {
     try {
       const raw = localStorage.getItem(SAVE_KEY);
       if (!raw) return false;
       const loaded = JSON.parse(raw);
       S = { ...defaultState(), ...loaded };
-      S.lastTick = Date.now(); // avoid huge offline gains for simplicity
+
+      /* ---- Offline earnings ---- */
+      const now = Date.now();
+      const elapsedMs = now - (S.lastTick || now);
+      const elapsedSec = Math.max(0, elapsedMs / 1000);
+
+      // Expire any active effects that ended while we were away
+      S.activeEffects = (S.activeEffects || []).filter(e => e.endsAt > now);
+
+      // Recalc CPS *before* applying offline gains (with clean state, no expired buffs)
       recalc();
+
+      if (elapsedSec > 10 && _cps > 0) {          // ignore <10 s (just a page refresh)
+        const MAX_OFFLINE_SEC = 8 * 3600;           // cap at 8 hours
+        const cappedSec = Math.min(elapsedSec, MAX_OFFLINE_SEC);
+
+        // Base offline rate: 50% of CPS.  Heavenly "offline_pct" upgrades add more.
+        let offlinePct = 0.50;
+        AscensionData.heavenlyUpgrades.forEach(h => {
+          if (S.heavenlyOwned[h.id] && h.effect.type === 'offline_pct') {
+            offlinePct += h.effect.value;
+          }
+        });
+        offlinePct = Math.min(offlinePct, 1.0);     // never exceed 100 %
+
+        const gain = _cps * cappedSec * offlinePct;
+        S.cm += gain;
+        S.totalCmEarned += gain;
+        S.totalCmAllTime += gain;
+
+        _offlineReport = { seconds: cappedSec, cmGained: gain, pct: offlinePct };
+      }
+
+      S.lastTick = now;
+      recalc();           // recalc again after gains (evolution may have changed)
+      checkEvolutions();
       return true;
     } catch (e) { return false; }
+  }
+
+  function getOfflineReport() {
+    const r = _offlineReport;
+    _offlineReport = null;  // consume once
+    return r;
   }
 
   function hardReset() {
@@ -443,6 +485,9 @@ const Engine = (() => {
       return true;
     } catch (e) { return false; }
   }
+
+  /* Save when the tab/browser is about to close */
+  window.addEventListener('beforeunload', () => save());
 
   /* ---------- Init ---------- */
   function init() {
@@ -469,6 +514,6 @@ const Engine = (() => {
     recalc, collectGolden, ascend, buyHeavenly,
     getPrestigeOnReset, save, load, hardReset,
     exportSave, importSave, checkEvolutions, checkAchievements,
-    setSelectedEvo,
+    setSelectedEvo, getOfflineReport,
   };
 })();

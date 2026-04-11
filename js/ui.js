@@ -60,6 +60,9 @@ const UI = (() => {
     Utils.on('building_bought', () => { renderBuildings(); renderUpgrades(); });
     Utils.on('upgrade_bought', () => { renderUpgrades(); renderBuildings(); });
     Utils.on('heavenly_bought', () => renderAscension());
+
+    // Check for offline earnings report
+    showOfflineReport();
   }
 
   function renderAll() {
@@ -446,6 +449,51 @@ const UI = (() => {
   }
   function closeModal() {
     modalOverlay.classList.add('hidden');
+  }
+
+  /* ---------- Offline Earnings Popup ---------- */
+  function showOfflineReport() {
+    const report = Engine.getOfflineReport();
+    if (!report) return;
+
+    const secs = Math.floor(report.seconds);
+    let timeStr;
+    if (secs >= 3600) {
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      timeStr = h + 'h ' + m + 'min';
+    } else if (secs >= 60) {
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+      timeStr = m + 'min ' + s + 's';
+    } else {
+      timeStr = secs + 's';
+    }
+
+    const pctDisplay = Math.round((report.pct || 0.5) * 100);
+    const pctTip = pctDisplay >= 100
+      ? 'Produção offline: 100% do CPS — máximo! 💪'
+      : `Produção offline: ${pctDisplay}% do CPS — melhore com upgrades celestiais!`;
+
+    openModal(`
+      <h2 style="color:var(--accent2)">🌙 Bem-vindo de volta!</h2>
+      <p style="margin:12px 0;">Enquanto você estava fora por <b>${timeStr}</b>,
+      seu bilau continuou crescendo!</p>
+      <p style="font-size:1.4rem;text-align:center;margin:16px 0;color:var(--accent);">
+        + ${Utils.formatCm(report.cmGained)}
+      </p>
+      <p style="font-size:.8rem;color:var(--text-dim);text-align:center;">
+        (${pctTip})
+      </p>
+      <div style="text-align:center;margin-top:16px;">
+        <button id="offline-ok" class="opt-btn" style="padding:10px 32px;font-size:1rem;background:var(--accent);color:#000;border:none;border-radius:var(--radius);cursor:pointer;">
+          Oba! 🍆
+        </button>
+      </div>
+    `);
+    setTimeout(() => {
+      document.getElementById('offline-ok')?.addEventListener('click', closeModal);
+    }, 50);
   }
 
   function showStats() {
