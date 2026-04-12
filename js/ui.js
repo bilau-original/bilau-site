@@ -426,8 +426,25 @@ const UI = (() => {
     moveTooltip(e);
   }
   function moveTooltip(e) {
-    tooltip.style.left = (e.clientX + 16) + 'px';
-    tooltip.style.top  = (e.clientY + 16) + 'px';
+    const pad = 16;
+    const rect = tooltip.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    let x = e.clientX + pad;
+    let y = e.clientY + pad;
+
+    // If tooltip would overflow right edge, flip to left of cursor
+    if (x + rect.width > vw) x = e.clientX - rect.width - pad;
+    // If tooltip would overflow bottom edge, flip above cursor
+    if (y + rect.height > vh) y = e.clientY - rect.height - pad;
+
+    // Clamp to viewport so it never goes off-screen
+    x = Math.max(4, Math.min(x, vw - rect.width - 4));
+    y = Math.max(4, Math.min(y, vh - rect.height - 4));
+
+    tooltip.style.left = x + 'px';
+    tooltip.style.top  = y + 'px';
   }
   function hideTooltip() {
     tooltip.classList.remove('visible');

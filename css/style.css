@@ -119,14 +119,13 @@ html, body {
 }
 #click-area:active { transform: scale(.93); }
 #penis-placeholder {
-  font-size: 8rem; filter: drop-shadow(0 0 20px var(--accent));
+  font-size: 8rem;
   transition: .3s;
   animation: idle-bob 2s ease-in-out infinite;
   display: flex; align-items: center; justify-content: center;
 }
 #penis-placeholder .icon-img {
   width: 200px !important; height: 200px !important;
-  filter: drop-shadow(0 0 20px var(--accent));
 }
 @keyframes idle-bob {
   0%,100% { transform: translateY(0); }
