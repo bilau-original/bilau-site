@@ -339,7 +339,7 @@ const EvolutionsData = [
   {
     id: 'evo46', name: 'Bileus',
     icon: 'assets/evolutions/46.gif', asset: 'assets/evolutions/46.gif', placeholder: '✴️',
-    threshold: 5e110,
+    threshold: 5e105,
     description: 'Ele É o universo. Tudo é bilau. Bilau é tudo. Sempre foi. Sempre será.',
     bonusMult: 10.0,
   },
