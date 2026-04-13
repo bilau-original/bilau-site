@@ -281,7 +281,7 @@ const Engine = (() => {
       // Frenzy: CPS ×7 for duration (boosted by goldPower)
       const mult = Math.round(7 * goldPower);
       effect = { type: 'cps_mult', mult: mult, endsAt: Date.now() + baseDuration };
-      Utils.emit('toast', { text: '🔥 Frenesi de Crescimento! CPS ×' + mult + ' por ' + (baseDuration/1000) + 's!' });
+      Utils.emit('toast', { text: '🔥 Frenesi de Crescimento! cm/s ×' + mult + ' por ' + (baseDuration/1000) + 's!' });
     } else if (roll < 0.7) {
       // Click frenzy: clicks ×777 (boosted by goldPower)
       const mult = Math.round(777 * goldPower);

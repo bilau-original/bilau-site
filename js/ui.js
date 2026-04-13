@@ -313,7 +313,7 @@ const UI = (() => {
       <div class="asc-info">
         Deu tudo errado? Tente renascer com mais testosterona da próxima vez...<br>
         Renasça e ganhe <b>Chips de Testosterona (CT)</b>.<br>
-        CT dão um bônus permanente de CPS a cada rodada.
+        CT dão um bônus permanente de cm/s a cada rodada.
       </div>
       <div class="prestige-currency">
         🧪 ${availableTC} CT disponíveis (${S.totalTC} total ganhos)
@@ -374,7 +374,7 @@ const UI = (() => {
     // Show count
     const header = document.createElement('div');
     header.style.cssText = 'margin-bottom:10px;color:var(--gold);font-weight:700;';
-    header.textContent = '🏅 ' + unlocked.length + ' / ' + AchievementsData.length + ' conquistas (+' + (unlocked.length * 2) + '% bônus CPS)';
+    header.textContent = '🏅 ' + unlocked.length + ' / ' + AchievementsData.length + ' conquistas (+' + (unlocked.length * 2) + '% bônus cm/s)';
     achListWrap.appendChild(header);
 
     [...unlocked, ...locked].forEach(a => {
@@ -489,8 +489,8 @@ const UI = (() => {
 
     const pctDisplay = Math.round((report.pct || 0.5) * 100);
     const pctTip = pctDisplay >= 100
-      ? 'Produção offline: 100% do CPS — máximo! 💪'
-      : `Produção offline: ${pctDisplay}% do CPS — melhore com upgrades celestiais!`;
+      ? 'Produção offline: 100% do cm/s — máximo! 💪'
+      : `Produção offline: ${pctDisplay}% do cm/s — melhore com upgrades celestiais!`;
 
     openModal(`
       <h2 style="color:var(--accent2)">🌙 Bem-vindo de volta!</h2>
@@ -520,7 +520,7 @@ const UI = (() => {
       <p><b>Tamanho atual:</b> ${Utils.formatCm(S.cm)}</p>
       <p><b>Total crescido (essa rodada):</b> ${Utils.formatCm(S.totalCmEarned)}</p>
       <p><b>Total crescido (geral):</b> ${Utils.formatCm(S.totalCmAllTime)}</p>
-      <p><b>CPS:</b> ${Utils.formatCm(Engine.getCps())}</p>
+      <p><b>cm/s:</b> ${Utils.formatCm(Engine.getCps())}</p>
       <p><b>Valor do clique:</b> ${Utils.formatCm(Engine.getClickVal())}</p>
       <p><b>Total de cliques:</b> ${Utils.formatNumber(S.totalClicks)}</p>
       <p><b>Gotas douradas clicadas:</b> ${S.goldenClicks}</p>
@@ -577,7 +577,7 @@ const UI = (() => {
         <li>Fique de olho nas gotas douradas (💧) — dão bônus!</li>
         <li>Renasça para ganhar Chips de Testosterona e bônus permanentes</li>
         <li>Melhorias celestiais OP: auto-clique, multiplicadores insanos e mais</li>
-        <li>Colecione conquistas para +2% CPS cada</li>
+        <li>Colecione conquistas para +2% cm/s cada</li>
       </ul>
       <p style="font-size:.8rem;color:var(--text-dim);">O jogo salva automaticamente a cada 30 segundos.</p>
     `);

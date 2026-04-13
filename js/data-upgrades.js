@@ -37,13 +37,13 @@ const UpgradesData = (() => {
   add({ id:'mult13',name:'Testosterona Absoluta',        icon:'🔱', desc:'Toda produção ×1000.',type:'mult', value:1000,cost:5e65,            req: { totalCm:5e65 } });
   add({ id:'mult14',name:'Essência do Onibilau',         icon:'✴️', desc:'Toda produção ×10000.',type:'mult',value:10000,cost:5e80,           req: { totalCm:5e80 } });
 
-  /* ---- Click % of CPS ---- */
-  add({ id:'clickcps1', name:'Crescimento Simpático',  icon:'🔗', desc:'Cada clique +1% do seu CPS.',  type:'clickcps', value:0.01, cost:5000,         req: { totalCm:2000 } });
-  add({ id:'clickcps2', name:'Ressonância',            icon:'🔗', desc:'Cada clique +1% do seu CPS.',  type:'clickcps', value:0.01, cost:500000,       req: { totalCm:200000 } });
-  add({ id:'clickcps3', name:'Crescimento Harmônico',  icon:'🔗', desc:'Cada clique +1% do seu CPS.',  type:'clickcps', value:0.01, cost:50000000,     req: { totalCm:20000000 } });
-  add({ id:'clickcps4', name:'Sinergia Bilauística',   icon:'🔗', desc:'Cada clique +2% do seu CPS.',  type:'clickcps', value:0.02, cost:5e12,         req: { totalCm:5e12 } });
-  add({ id:'clickcps5', name:'Feedback Cósmico',       icon:'🔗', desc:'Cada clique +5% do seu CPS.',  type:'clickcps', value:0.05, cost:5e20,         req: { totalCm:5e20 } });
-  add({ id:'clickcps6', name:'Loop Infinito',          icon:'🔗', desc:'Cada clique +10% do seu CPS.', type:'clickcps', value:0.10, cost:5e35,         req: { totalCm:5e35 } });
+  /* ---- Click % of cm/s ---- */
+  add({ id:'clickcps1', name:'Crescimento Simpático',  icon:'🔗', desc:'Cada clique +1% do seu cm/s.',  type:'clickcps', value:0.01, cost:5000,         req: { totalCm:2000 } });
+  add({ id:'clickcps2', name:'Ressonância',            icon:'🔗', desc:'Cada clique +1% do seu cm/s.',  type:'clickcps', value:0.01, cost:500000,       req: { totalCm:200000 } });
+  add({ id:'clickcps3', name:'Crescimento Harmônico',  icon:'🔗', desc:'Cada clique +1% do seu cm/s.',  type:'clickcps', value:0.01, cost:50000000,     req: { totalCm:20000000 } });
+  add({ id:'clickcps4', name:'Sinergia Bilauística',   icon:'🔗', desc:'Cada clique +2% do seu cm/s.',  type:'clickcps', value:0.02, cost:5e12,         req: { totalCm:5e12 } });
+  add({ id:'clickcps5', name:'Feedback Cósmico',       icon:'🔗', desc:'Cada clique +5% do seu cm/s.',  type:'clickcps', value:0.05, cost:5e20,         req: { totalCm:5e20 } });
+  add({ id:'clickcps6', name:'Loop Infinito',          icon:'🔗', desc:'Cada clique +10% do seu cm/s.', type:'clickcps', value:0.10, cost:5e35,         req: { totalCm:5e35 } });
 
   /* ---- Per-building upgrades (3 per building, double/triple output) ---- */
   BuildingsData.forEach((b, i) => {
