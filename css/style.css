@@ -95,6 +95,9 @@ html, body {
 /* ---------- Tabs ---------- */
 .panel-tabs {
   display: flex; gap: 4px; margin-bottom: 10px;
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg-panel);
+  padding-top: 4px;
 }
 .tab {
   flex: 1; padding: 8px 4px; text-align: center;
@@ -319,4 +322,30 @@ html, body {
 @media (max-width: 1000px) {
   #game-wrap { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
   #panel-left, #panel-right { max-height: 35vh; }
+
+  /* Bigger bilau on mobile */
+  #click-area {
+    width: 300px; height: 300px;
+  }
+  #penis-placeholder {
+    font-size: 10rem;
+  }
+  #penis-placeholder .icon-img {
+    width: 260px !important; height: 260px !important;
+  }
+
+  /* Larger progress bar on mobile */
+  #evolution-progress-wrap {
+    width: 280px; height: 28px;
+    border-radius: 14px;
+    margin-top: 12px;
+  }
+  #evolution-progress-text {
+    font-size: .85rem;
+  }
+
+  /* Sticky tabs on mobile — ensure they stay visible */
+  .panel-tabs {
+    position: sticky; top: 0; z-index: 50;
+  }
 }
